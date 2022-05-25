@@ -2,7 +2,7 @@ package com.revature.controllers;
 
 
 import com.revature.models.User;
-import com.revature.repository.services.UserService;
+import com.revature.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;

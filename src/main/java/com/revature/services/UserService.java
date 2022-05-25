@@ -1,4 +1,4 @@
-package com.revature.repository.services;
+package com.revature.services;
 
 
 import com.revature.models.User;
@@ -13,11 +13,11 @@ import java.sql.SQLOutput;
 public class UserService {
 
 
-    private UserRepo ur;
+    private com.revature.repository.UserRepo ur;
 
 
     @Autowired
-    public UserService(UserRepo ur) {
+    public UserService(com.revature.repository.UserRepo ur) {
         this.ur = ur;
     }
 
