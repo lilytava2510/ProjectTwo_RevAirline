@@ -2,13 +2,15 @@ package com.revature.models;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name="bookings")
 public class Booking {
 
     @Id
-    @Column(name="bookingid")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int bookingid;
 
@@ -20,23 +22,51 @@ public class Booking {
     private double price;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-    @JoinColumn(name="userid")
-    private  int userid;
+    @JoinColumn(name="user_id")
+    private  User user;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-    @JoinColumn(name="city")
-    private String origin;
+    @ManyToOne(cascade= CascadeType.ALL, fetch= FetchType.LAZY)
+    @JoinColumn(name="origin_city")
+    private City origin;
+
+    @ManyToOne(cascade= CascadeType.ALL, fetch= FetchType.LAZY)
+    @JoinColumn(name="destination_city")
+    private City destination;
 
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-    @JoinColumn(name="city")
-    private String destination;
 
-    public Booking(Date date, double price, int userid, String origin, String destination) {
+
+
+    public Booking(Date date, double price, User user, City origin, City destination) {
         this.date = date;
         this.price = price;
-        this.userid = userid;
+        this.user = user;
         this.origin = origin;
+        this.destination = destination;
+    }
+
+    public Booking(int bookingid, Date date, double price, User user, City origin, City destination) {
+        this.bookingid = bookingid;
+        this.date = date;
+        this.price = price;
+        this.user = user;
+        this.origin = origin;
+        this.destination = destination;
+    }
+
+    public City getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(City origin) {
+        this.origin = origin;
+    }
+
+    public City getDestination() {
+        return destination;
+    }
+
+    public void setDestination(City destination) {
         this.destination = destination;
     }
 
@@ -64,29 +94,15 @@ public class Booking {
         this.price = price;
     }
 
-    public int getUserid() {
-        return userid;
+    public User getUser() {
+        return this.user;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getOrigin() {
-        return origin;
-    }
 
-    public void setOrigin(String origin) {
-        this.origin = origin;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
 
     @Override
     public String toString() {
@@ -94,9 +110,8 @@ public class Booking {
                 "bookingid=" + bookingid +
                 ", date=" + date +
                 ", price=" + price +
-                ", userid=" + userid +
-                ", origin='" + origin + '\'' +
-                ", destination='" + destination + '\'' +
+
+
                 '}';
     }
 }
