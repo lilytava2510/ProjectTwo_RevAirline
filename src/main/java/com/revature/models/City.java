@@ -1,6 +1,8 @@
 package com.revature.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +19,12 @@ public class City {
     private String city;
 
 
-    @OneToMany(mappedBy = "origin", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "origin", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Booking> departures;
 
-    @OneToMany(mappedBy = "destination", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "destination", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Booking> arrivals;
 
 
@@ -38,13 +42,13 @@ public class City {
         this.departures = new ArrayList<>();
     }
 
-    public City(int cityId, String city, List<Booking> departures, List<Booking> arrivals, int position) {
-        this.cityId = cityId;
-        this.city = city;
-        this.departures = departures;
-        this.arrivals = arrivals;
-        this.position = position;
-    }
+//    public City(int cityId, String city, List<Booking> departures, List<Booking> arrivals, int position) {
+//        this.cityId = cityId;
+//        this.city = city;
+//        this.departures = departures;
+//        this.arrivals = arrivals;
+//        this.position = position;
+//    }
 
     public int getCityId() {
         return cityId;

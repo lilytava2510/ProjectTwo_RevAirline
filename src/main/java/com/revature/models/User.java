@@ -29,7 +29,7 @@ public class User {
     private int role;
 
 
-    @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="user", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Booking> bookingList;
 
     @Column(name="first_name")

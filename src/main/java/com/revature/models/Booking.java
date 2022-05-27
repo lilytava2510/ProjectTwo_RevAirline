@@ -1,5 +1,7 @@
 package com.revature.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class Booking {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
+    @JsonIgnore
     private  User user;
 
     @ManyToOne(cascade= CascadeType.ALL, fetch= FetchType.LAZY)
@@ -35,7 +38,8 @@ public class Booking {
 
 
 
-
+    public Booking() {
+    }
 
     public Booking(Date date, double price, User user, City origin, City destination) {
         this.date = date;
