@@ -3,6 +3,7 @@ package com.revature.services;
 import com.revature.models.City;
 import com.revature.models.User;
 import com.revature.models.Booking;
+import com.revature.repository.BookingRepo;
 import com.revature.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ import java.util.List;
 public class BookingService {
 
 
-    private com.revature.repository.BookingRepo br;
+    private BookingRepo br;
 
     private UserService us;
 
@@ -25,7 +26,7 @@ public class BookingService {
     private UserRepo ur;
 
     @Autowired
-    public BookingService(com.revature.repository.BookingRepo br, UserService us, CityService cs, UserRepo ur) {
+    public BookingService(BookingRepo br, UserService us, CityService cs, UserRepo ur) {
         this.br = br;
         this.us = us;
         this.cs = cs;
@@ -33,59 +34,49 @@ public class BookingService {
     }
 
     public Booking createBooking(String date, double price, int userid, int origin, int destination) {
-
-
-
-
-
-
-      User we = us.findCurrentUserById(userid);
-
-      // System.out.println(we);
-
+        User we = us.findCurrentUserById(userid);
        City oc = cs.findCurrentCityById(origin);
        City dc = cs.findCurrentCityById(destination);
        Date ft =Date.valueOf(date);
-
         Booking b = new Booking(ft, price, we, oc, dc);
-
-
         return br.save(b);
     }
 
     public Booking updateBooking(int bookingid, String date, double price, int userid, int origin, int destination) {
-
-
-
-
-
-
         User we = us.findCurrentUserById(userid);
-
-        // System.out.println(we);
-
         City oc = cs.findCurrentCityById(origin);
         City dc = cs.findCurrentCityById(destination);
         Date ft =Date.valueOf(date);
-
         Booking b = new Booking(bookingid, ft, price, we, oc, dc);
-
-
        return br.saveAndFlush(b);
     }
 
     public void deleteBooking(int bookingid){
       //  br.deleteById(bookingid);
-       Booking book = br.getById(bookingid);
-       User u = us.getUserByEmailAndPassword(book.getUser().getEmail(), book.getUser().getPassword());
+        Booking book = br.getById(bookingid);
+        User u = us.getUserByEmailAndPassword(book.getUser().getEmail(), book.getUser().getPassword());
+        List<Booking> ul = u.getBookingList();
+        ul.remove(book);
+        City originCity = cs.findCurrentCityById(book.getOrigin().getCityId());
+        List<Booking> ol = originCity.getDepartures();
+        ol.remove(book);
+        originCity.setDepartures(ol);
+        City destinationCity = cs.findCurrentCityById(book.getDestination().getCityId());
+        List<Booking> dl = destinationCity.getArrivals();
+        dl.remove(book);
+        destinationCity.setArrivals(dl);
+        for(Booking b : ul){
+            if(b.getOrigin().getCityId() == originCity.getCityId()){
+                b.setOrigin(originCity);}
+            else if(b.getDestination().getCityId() == originCity.getCityId()){
+                b.setDestination(originCity);}
+            if(b.getOrigin().getCityId() == destinationCity.getCityId()){
+                b.setOrigin(destinationCity);}
+            else if (b.getDestination().getCityId() == destinationCity.getCityId()){
+                b.setDestination(destinationCity);}
 
-        List<Booking> bl = u.getBookingList();
-
-
-        bl.remove(book);
-
-        u.setBookingList(bl);
-
+        }
+        u.setBookingList(ul);
         ur.saveAndFlush(u);
 
 
