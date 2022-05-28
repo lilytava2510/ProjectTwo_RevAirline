@@ -13,7 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -42,29 +44,29 @@ public class BookingController {
         double price = Double.parseDouble(u.get("price"));
 
 
-
-        Booking book = bs.updateBooking(Integer.parseInt(u.get("bookingid")),u.get("date"), price, Integer.parseInt(u.get("userId")), Integer.parseInt(u.get("origin")), Integer.parseInt(u.get("destination")));
+        Booking book = bs.updateBooking(Integer.parseInt(u.get("bookingid")), u.get("date"), price, Integer.parseInt(u.get("userId")), Integer.parseInt(u.get("origin")), Integer.parseInt(u.get("destination")));
 
         return new ResponseEntity<>(book, HttpStatus.ACCEPTED);
     }
 
 
-
     @DeleteMapping("/booking/delete/{id}")
-    public ResponseEntity<Object> handleDelete(@PathVariable ("id") int id) {
+    public ResponseEntity<Object> handleDelete(@PathVariable("id") int id) {
         bs.deleteBooking(id);
 
         return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
     }
-//
+
+    //
 ////    @GetMapping("/user/get/{email}")
 ////    public ResponseEntity<Object> handleGet(@PathVariable ("email") String email){
 ////        return ResponseEntity<>(us.findCurrentUserByEmail(email), HttpStatus.ACCEPTED);
 ////    }
 //
-//    @GetMapping("/booking/get/{id}")
-//    public User handleGet(@PathVariable ("id") int id){
-//        return us.findCurrentUserById(id);
-//    }
-}
+    @GetMapping("/booking/get/{id}")
+    public ResponseEntity<List> handleGet(@PathVariable("id") int id) {
+        return new ResponseEntity<>(bs.findCurrentBookingByUId(id), HttpStatus.ACCEPTED);
 
+    }
+
+}

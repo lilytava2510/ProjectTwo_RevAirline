@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -75,20 +76,30 @@ public class BookingService {
     }
 
     public void deleteBooking(int bookingid){
-      //  br.deleteById(bookingid);
-       Booking book = br.getById(bookingid);
-       User u = us.getUserByEmailAndPassword(book.getUser().getEmail(), book.getUser().getPassword());
+        Booking book = br.getById(bookingid);
+        User u = us.getUserByEmailAndPassword(book.getUser().getEmail(), book.getUser().getPassword());
+        List<Booking> ul = u.getBookingList();
+        ul.remove(book);
+        City originCity = cs.findCurrentCityById(book.getOrigin().getCityId());
+        List<Booking> ol = originCity.getDepartures();
+        ol.remove(book);
+        originCity.setDepartures(ol);
+        City destinationCity = cs.findCurrentCityById(book.getDestination().getCityId());
+        List<Booking> dl = destinationCity.getArrivals();
+        dl.remove(book);
+        destinationCity.setArrivals(dl);
+        for(Booking b : ul){
+            if(b.getOrigin().getCityId() == originCity.getCityId()){
+                b.setOrigin(originCity);}
+            else if(b.getDestination().getCityId() == originCity.getCityId()){
+                b.setDestination(originCity);}
+            if(b.getOrigin().getCityId() == destinationCity.getCityId()){
+                b.setOrigin(destinationCity);}
+            else if (b.getDestination().getCityId() == destinationCity.getCityId()){
+                b.setDestination(destinationCity);}
 
-        List<Booking> bl = u.getBookingList();
-
-
-        bl.remove(book);
-
-        u.setBookingList(bl);
-
-        ur.saveAndFlush(u);
-
-
+        }
+        u.setBookingList(ul);
 
 
 
@@ -110,7 +121,10 @@ public class BookingService {
 ////        return ur.findByEmail(email);
 ////    }
 //
-//    public User findCurrentUserById(int id) {
-//        return ur.findById(id).get();
-//    }
+    public List<Booking> findCurrentBookingByUId(int id) {
+        User u = new User();
+        u.setUserId(id);
+        return br.findByUser(u);
+
+    }
 }
