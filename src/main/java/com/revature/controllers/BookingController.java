@@ -34,8 +34,12 @@ public class BookingController {
 
 
         Booking book = bs.createBooking(u.get("date"), price, Integer.parseInt(u.get("userId")), Integer.parseInt(u.get("origin")), Integer.parseInt(u.get("destination")));
+if(book != null){
+    return new ResponseEntity<>(book, HttpStatus.CREATED);
+} else{
+    return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+}
 
-        return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
 
 
@@ -68,5 +72,7 @@ public class BookingController {
         return new ResponseEntity<>(bs.findCurrentBookingByUId(id), HttpStatus.ACCEPTED);
 
     }
+
+
 
 }

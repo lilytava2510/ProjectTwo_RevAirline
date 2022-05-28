@@ -47,11 +47,13 @@ public class BookingService {
        City oc = cs.findCurrentCityById(origin);
        City dc = cs.findCurrentCityById(destination);
        Date ft =Date.valueOf(date);
+        if(canBook(oc.getCity(), dc.getCity(), date)) {
+            Booking b = new Booking(ft, price, we, oc, dc);
 
-        Booking b = new Booking(ft, price, we, oc, dc);
-
-
-        return br.save(b);
+            return br.save(b);
+        } else {
+            return null;
+        }
     }
 
     public Booking updateBooking(int bookingid, String date, double price, int userid, int origin, int destination) {
@@ -127,4 +129,63 @@ public class BookingService {
         return br.findByUser(u);
 
     }
-}
+
+    public Boolean canBook(String origin, String destination, String date) {
+        Date ft = Date.valueOf(date);
+        List<Booking> b = br.findByDate(ft);
+        int count = 0;
+        City from = (City) cs.findCurrentCityByName(origin);
+        City to = (City) cs.findCurrentCityByName(destination);
+        for (Booking book : b) {
+            if (book.getOrigin() == from && book.getDestination() == to) {
+                count++;
+            }
+        }
+
+        if (count < 10) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+            // Helper Functions for Searching and Filtering
+        public List<Booking> findCurrentBookingByDate(String date) {
+            Date ft =Date.valueOf(date);
+             List<Booking> b = br.findByDate(ft);
+             return b;
+
+        }
+
+    public List<Booking> findCurrentBookingByOrigin(String origin) {
+        City from = (City) cs.findCurrentCityByName(origin);
+        List<Booking> b = br.findByOriginCity(from.getCityId());
+
+
+        return b;
+
+    }
+
+    public List<Booking> findCurrentBookingByDestination(String destination) {
+        City to = (City) cs.findCurrentCityByName(destination);
+        List<Booking> b = br.findByDestinationCity(to.getCityId());
+
+
+        return b;
+
+    }
+
+
+    public List<Booking> findCurrentBookingByDestination(String date, String origin, String destination) {
+        City from = (City) cs.findCurrentCityByName(origin);
+        Date ft =Date.valueOf(date);
+        City to = (City) cs.findCurrentCityByName(destination);
+        List<Booking> b = br.findByDateAndOriginAndDestination(ft, from.getCityId(), to.getCityId());
+
+
+        return b;
+
+    }
+        
+
+    }
+
