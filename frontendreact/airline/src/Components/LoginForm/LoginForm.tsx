@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import "./LoginForm.css";
 import { useDispatch } from 'react-redux';
-import { loginUser} from '../../Slices/UserSlice';
 import { AppDispatch } from '../../Store';
+import { loginUser } from '../../Slices/UserSlice';
 
 
 export const Login: React.FC = () => {
@@ -56,3 +56,5 @@ export const Login: React.FC = () => {
             </form>
                 <button className="login-button" onClick={handleLogin}>Login</button>
         </div>
+    )
+}

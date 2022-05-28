@@ -1,14 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
-import { LoginForm } from './Components/LoginForm/LoginForm';
+import { LoginPage } from './Views/LoginPage/LoginPage';
+import {BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 
 function App() {
   return (
-    <>
-   <LoginForm/>
-    </>
+    <BrowserRouter>
+    <Routes>
+    <Route path="*" element={<Navigate to="/login" replace />} />
+    <Route path="/login" element={<LoginPage />}/>
+    </Routes>
+    </BrowserRouter>
+   
+  
   );
 }
 
