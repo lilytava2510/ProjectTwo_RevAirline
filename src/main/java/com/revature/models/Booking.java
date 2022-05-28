@@ -28,11 +28,11 @@ public class Booking {
     @JsonIgnore
     private  User user;
 
-    @ManyToOne(cascade= CascadeType.ALL, fetch= FetchType.LAZY)
+    @ManyToOne(cascade= CascadeType.ALL, fetch= FetchType.EAGER)
     @JoinColumn(name="origin_city")
     private City origin;
 
-    @ManyToOne(cascade= CascadeType.ALL, fetch= FetchType.LAZY)
+    @ManyToOne(cascade= CascadeType.ALL, fetch= FetchType.EAGER)
     @JoinColumn(name="destination_city")
     private City destination;
 

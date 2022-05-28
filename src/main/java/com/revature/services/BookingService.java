@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -52,7 +53,6 @@ public class BookingService {
     }
 
     public void deleteBooking(int bookingid){
-      //  br.deleteById(bookingid);
         Booking book = br.getById(bookingid);
         User u = us.getUserByEmailAndPassword(book.getUser().getEmail(), book.getUser().getPassword());
         List<Booking> ul = u.getBookingList();
@@ -75,12 +75,9 @@ public class BookingService {
             else if (b.getDestination().getCityId() == destinationCity.getCityId()){
                 b.setDestination(destinationCity);}
 
+
         }
         u.setBookingList(ul);
-        ur.saveAndFlush(u);
-
-
-
 
 
 
@@ -101,7 +98,10 @@ public class BookingService {
 ////        return ur.findByEmail(email);
 ////    }
 //
-//    public User findCurrentUserById(int id) {
-//        return ur.findById(id).get();
-//    }
+    public List<Booking> findCurrentBookingByUId(int id) {
+        User u = new User();
+        u.setUserId(id);
+        return br.findByUser(u);
+
+    }
 }
