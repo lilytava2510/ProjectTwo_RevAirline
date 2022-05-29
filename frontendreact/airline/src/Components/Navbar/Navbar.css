@@ -1,0 +1,90 @@
+:root {
+    --bg: #03001a;
+    --dark: #0F0F0F;
+    --btn-blue: #004060;
+    --accent: #23CE6B;
+    --text-white: #FBFBFB;
+    --text-blue:#004060;
+    --bs-blue: #63B3ED;
+    --bs-body-bg: #fff;
+    --dark-blue:rgb(13, 5, 40);
+    --btn-hover:#412D7D;
+}
+
+.navbar {
+    background: var(--bs-blue);
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.nav-menu {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-gap: 10px;
+    list-style: none;
+    text-align: center;
+    width: 80%;
+    justify-content: end;
+    margin-right: 2rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 10px;
+}
+
+.nav-link {
+    color: var(--text-white);
+    font-size: 1.2rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logout-btn{
+    background-color: var(--bs-blue);
+    border: solid 2px var(--dark);
+    color: var(--dark);
+    font-weight: bold;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    cursor: pointer;
+    outline: none;
+}
+
+.logout-btn:hover{
+    cursor: pointer;
+    color: #FBFBFB;
+    background: var(--btn-hover);
+    transition: .3s;
+}
+
+.logout {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    outline: none;
+}
+
+
+.profile-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    object-fit: cover;
+}
