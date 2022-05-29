@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -24,5 +25,9 @@ public class CityService {
 
     public City findCurrentCityById(int id) {
         return cr.findById(id).get();
+    }
+
+    public Object findCurrentCityByName(String city) {
+        return cr.findByName(city).get(1);
     }
 }
