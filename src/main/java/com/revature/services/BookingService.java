@@ -39,10 +39,10 @@ public class BookingService {
        City oc = cs.findCurrentCityById(origin);
        City dc = cs.findCurrentCityById(destination);
        Date ft =Date.valueOf(date);
-<<<<<<< HEAD
-        Booking b = new Booking(ft, price, we, oc, dc);
-        return br.save(b);
-=======
+
+
+
+
         if(canBook(oc.getCity(), dc.getCity(), date)) {
             Booking b = new Booking(ft, price, we, oc, dc);
 
@@ -50,7 +50,7 @@ public class BookingService {
         } else {
             return null;
         }
->>>>>>> master
+
     }
 
     public Booking updateBooking(int bookingid, String date, double price, int userid, int origin, int destination) {

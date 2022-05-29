@@ -27,6 +27,6 @@ dependencies {
 	testImplementation 'com.h2database:h2:2.1.212'
 }
 
-//tasks.named('test') {
-//	useJUnitPlatform()
-//}
+tasks.named('test') {
+	useJUnitPlatform()
+}
