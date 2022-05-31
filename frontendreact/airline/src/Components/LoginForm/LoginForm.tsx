@@ -34,6 +34,8 @@ export const Login: React.FC = () => {
         
     }
     return(
+    <>
+        
         <div className="login">
             <div className="text-container">
                 <h1 className="login-header">Welcome to Revature Airlines: </h1>
@@ -56,5 +58,6 @@ export const Login: React.FC = () => {
             </form>
                 <button className="login-button" onClick={handleLogin}>Login</button>
         </div>
+    </>
     )
 }
