@@ -7,9 +7,10 @@ export interface IUser {
     password: string,
     points: number,
     role: number,
-    first_name: string,
-    last_name: string,
+    firstName: string,
+    lastName: string,
     creditcard_number: number,
     vaccination_status: boolean,
-    passport_number: number
+    passport_number: number,
+    booking: IBooking []
 }
