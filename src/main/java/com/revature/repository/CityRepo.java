@@ -14,5 +14,5 @@ public interface CityRepo extends JpaRepository<City, Integer>,  CrudRepository<
 
 
 
-    List<Object> findByName(String city);
+    City findByCity(String city);
 }
