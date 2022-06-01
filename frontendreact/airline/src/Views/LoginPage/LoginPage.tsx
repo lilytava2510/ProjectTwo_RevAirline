@@ -12,7 +12,7 @@ export const LoginPage: React.FC = () => {
     const navigator = useNavigate();
      useEffect(()=> {
           if(!userState.error && userState.user){
-              navigator('/home')
+              navigator('/search')
           }
      }, [userState]);
 

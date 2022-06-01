@@ -1,6 +1,7 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 import {IUser} from "../Interface/IUser";
+import {ICity} from "../Interface/ICity";
 
 //Figure out our default state for this slice
 
@@ -43,19 +44,21 @@ type info = {
 
     }
 
+
 export const loginUser = createAsyncThunk(
     'user/login',
     async (credentials:Login, thunkAPI) => {
         try{
             const res = await axios.post('http://localhost:8000/user/login', credentials);
-
+      console.log("loginrequest");
+      console.log(res);
             return {
                 userId: res.data.userId,
                 email: res.data.email,
                 password: res.data.password,
                 points: res.data.points,
                 firstName: res.data.firstName,
-                lastName: res.data. lastName,
+                lastName: res.data.lastName,
                 ccn: res.data.ccn,
                 sick: res.data.sick
 
@@ -106,7 +109,7 @@ export const updateUser = createAsyncThunk(
         }
     }  
   );
-
+ 
 
 
 
