@@ -2,6 +2,7 @@ package com.revature.services;
 
 
 import com.revature.models.User;
+import com.revature.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +14,11 @@ import java.sql.SQLOutput;
 public class UserService {
 
 
-    private com.revature.repository.UserRepo ur;
+    private UserRepo ur;
 
 
     @Autowired
-    public UserService(com.revature.repository.UserRepo ur) {
+    public UserService(UserRepo ur) {
         this.ur = ur;
     }
 

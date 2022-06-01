@@ -4,6 +4,7 @@ import { useSelector }  from 'react-redux';
 import { RootState } from '../../Store';
 import { Login } from '../../Components/LoginForm/LoginForm';
 import "./LoginPage.css";
+import { Navbar } from '../../Components/Navbar/Navbar';
 
 export const LoginPage: React.FC = () => {
 
@@ -17,10 +18,13 @@ export const LoginPage: React.FC = () => {
      }, [userState]);
 
     return(
+        <>
+        <Navbar />
         <div className="login-page">
             {userState.error ? <h2 className="login-error" >Hey your email or password is invalid! Please try again.</h2> : <></>}
           <Login />
         </div>
+        </>
     )
 
 }

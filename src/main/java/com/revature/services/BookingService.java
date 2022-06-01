@@ -33,6 +33,7 @@ public class BookingService {
         this.ur = ur;
     }
 
+<<<<<<< HEAD
     public Booking createBooking(String date, double price, int userid, String origin, String destination) {
 
 
@@ -58,6 +59,9 @@ public class BookingService {
     }
 
     public Booking updateBooking(int bookingid, String date, double price, int userid, String origin, String destination) {
+=======
+    public Booking createBooking(String date, int userid, String origin, String destination) {
+>>>>>>> master
 
 
 
@@ -70,12 +74,39 @@ public class BookingService {
 
         City oc = (City)cs.findCurrentCityByName(origin);
         City dc = (City)cs.findCurrentCityByName(destination);
+<<<<<<< HEAD
+=======
+        Date ft = Date.valueOf(date);
+        if(canBook(oc.getCity(), dc.getCity(), date)) {
+            double price = getPrice(origin, destination);
+            Booking b = new Booking(ft, price, we, oc, dc);
+
+            return br.save(b);
+        } else {
+            return null;
+        }
+    }
+
+    public Booking updateBooking(int bookingid, String date, double price, int userid, String origin, String destination) {
+
+
+
+
+
+
+        User we = us.findCurrentUserById(userid);
+
+        // System.out.println(we);
+
+        City oc = (City)cs.findCurrentCityByName(origin);
+        City dc = (City)cs.findCurrentCityByName(destination);
+>>>>>>> master
         Date ft =Date.valueOf(date);
 
         Booking b = new Booking(bookingid, ft, price, we, oc, dc);
 
 
-       return br.saveAndFlush(b);
+        return br.saveAndFlush(b);
     }
 
     public void deleteBooking(int bookingid){
@@ -109,7 +140,7 @@ public class BookingService {
 
     }
 
-//    public User getUserByEmailAndPassword(String email, String password) {
+    //    public User getUserByEmailAndPassword(String email, String password) {
 //
 //        return ur.findByEmailAndPassword(email, password);
 //
@@ -149,13 +180,13 @@ public class BookingService {
             return false;
         }
     }
-            // Helper Functions for Searching and Filtering
-        public List<Booking> findCurrentBookingByDate(String date) {
-            Date ft =Date.valueOf(date);
-             List<Booking> b = br.findByDate(ft);
-             return b;
+    // Helper Functions for Searching and Filtering
+    public List<Booking> findCurrentBookingByDate(String date) {
+        Date ft =Date.valueOf(date);
+        List<Booking> b = br.findByDate(ft);
+        return b;
 
-        }
+    }
 
     public List<Booking> findCurrentBookingByOrigin(String origin) {
         City from = (City) cs.findCurrentCityByName(origin);
@@ -186,6 +217,7 @@ public class BookingService {
         return b;
 
     }
+<<<<<<< HEAD
 
     public int getPrice(String origin, String destination){
         City from = (City) cs.findCurrentCityByName(origin);
@@ -202,6 +234,23 @@ public class BookingService {
         return points;
     }
         
+=======
+>>>>>>> master
 
+    public int getPrice(String origin, String destination){
+        City from = (City) cs.findCurrentCityByName(origin);
+        City to = (City) cs.findCurrentCityByName(destination);
+        int price = 0;
+        price = Math.abs(from.getPosition() - to.getPosition()) * 3;
+        return price;
     }
 
+    public double getPoints(String origin, String destination){
+        City from = (City) cs.findCurrentCityByName(origin);
+        City to = (City) cs.findCurrentCityByName(destination);
+        double points = Math.abs(from.getPosition() - to.getPosition()) * 0.5;
+        return points;
+    }
+
+
+}
