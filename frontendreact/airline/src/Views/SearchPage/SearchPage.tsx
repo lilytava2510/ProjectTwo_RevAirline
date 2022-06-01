@@ -11,6 +11,9 @@ export const SearchPage: React.FC = () => {
         <>
           <h1>Welcome to Revature Airline</h1>
           <h2>Below are the flights available</h2>
+          
+          
         </>
     )
 }
+
