@@ -23,6 +23,11 @@ type book = {
     userId: any
 }
 
+type ing = { 
+    date: any,
+    destination_city: any,
+    origin_city: any
+}
 
 export const createBook = createAsyncThunk(
     'reimburse/create',
@@ -37,6 +42,20 @@ export const createBook = createAsyncThunk(
         }
     }
 )
+
+export const searchBooking = createAsyncThunk(
+    "booking/get",
+    async (tis:ing, thunkAPI) => {
+        try{
+              //axios.defaults.withCredentials = true;
+            const res = await axios.post(`http://localhost:8000/booking/get`, tis);
+  
+            return res.data;
+        } catch (e){
+            console.log(e);
+        }
+    }  
+  );
 
 
 
