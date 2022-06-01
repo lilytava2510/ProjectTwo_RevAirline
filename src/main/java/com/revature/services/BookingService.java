@@ -33,7 +33,7 @@ public class BookingService {
         this.ur = ur;
     }
 
-    public Booking createBooking(String date, double price, int userid, String origin, String destination) {
+    public Booking createBooking(String date, int userid, String origin, String destination) {
 
 
 
@@ -46,9 +46,9 @@ public class BookingService {
 
         City oc = (City)cs.findCurrentCityByName(origin);
         City dc = (City)cs.findCurrentCityByName(destination);
-        Date ft =Date.valueOf(date);
+        Date ft = Date.valueOf(date);
         if(canBook(oc.getCity(), dc.getCity(), date)) {
-            price = getPrice(origin, destination);
+            double price = getPrice(origin, destination);
             Booking b = new Booking(ft, price, we, oc, dc);
 
             return br.save(b);
