@@ -33,7 +33,7 @@ public class BookingController {
         double price = Double.parseDouble(u.get("price"));
 
 
-        Booking book = bs.createBooking(u.get("date"), price, Integer.parseInt(u.get("userId")), Integer.parseInt(u.get("origin")), Integer.parseInt(u.get("destination")));
+        Booking book = bs.createBooking(u.get("date"), price, Integer.parseInt(u.get("userId")), u.get("origin"), u.get("destination"));
 if(book != null){
     return new ResponseEntity<>(book, HttpStatus.CREATED);
 } else{
@@ -48,7 +48,7 @@ if(book != null){
         double price = Double.parseDouble(u.get("price"));
 
 
-        Booking book = bs.updateBooking(Integer.parseInt(u.get("bookingid")), u.get("date"), price, Integer.parseInt(u.get("userId")), Integer.parseInt(u.get("origin")), Integer.parseInt(u.get("destination")));
+        Booking book = bs.updateBooking(Integer.parseInt(u.get("bookingid")), u.get("date"), price, Integer.parseInt(u.get("userId")), u.get("origin"), u.get("destination"));
 
         return new ResponseEntity<>(book, HttpStatus.ACCEPTED);
     }
@@ -73,6 +73,12 @@ if(book != null){
 
     }
 
+
+    @GetMapping("/booking/get/price")
+    public ResponseEntity<Object> handleGet() {
+        return new ResponseEntity<>(bs.findCurrentBookingByUId(id), HttpStatus.ACCEPTED);
+
+    }
 
 
 }

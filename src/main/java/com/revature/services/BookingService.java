@@ -33,7 +33,7 @@ public class BookingService {
         this.ur = ur;
     }
 
-    public Booking createBooking(String date, double price, int userid, int origin, int destination) {
+    public Booking createBooking(String date, double price, int userid, String origin, String destination) {
 
 
 
@@ -44,10 +44,11 @@ public class BookingService {
 
       // System.out.println(we);
 
-       City oc = cs.findCurrentCityById(origin);
-       City dc = cs.findCurrentCityById(destination);
+       City oc = (City)cs.findCurrentCityByName(origin);
+       City dc = (City)cs.findCurrentCityByName(destination);
        Date ft =Date.valueOf(date);
         if(canBook(oc.getCity(), dc.getCity(), date)) {
+            price = getPrice(origin, destination);
             Booking b = new Booking(ft, price, we, oc, dc);
 
             return br.save(b);
@@ -56,7 +57,7 @@ public class BookingService {
         }
     }
 
-    public Booking updateBooking(int bookingid, String date, double price, int userid, int origin, int destination) {
+    public Booking updateBooking(int bookingid, String date, double price, int userid, String origin, String destination) {
 
 
 
@@ -67,8 +68,8 @@ public class BookingService {
 
         // System.out.println(we);
 
-        City oc = cs.findCurrentCityById(origin);
-        City dc = cs.findCurrentCityById(destination);
+        City oc = (City)cs.findCurrentCityByName(origin);
+        City dc = (City)cs.findCurrentCityByName(destination);
         Date ft =Date.valueOf(date);
 
         Booking b = new Booking(bookingid, ft, price, we, oc, dc);
@@ -184,6 +185,21 @@ public class BookingService {
 
         return b;
 
+    }
+
+    public int getPrice(String origin, String destination){
+        City from = (City) cs.findCurrentCityByName(origin);
+        City to = (City) cs.findCurrentCityByName(destination);
+        int price = 0;
+        price = Math.abs(from.getPosition() - to.getPosition()) * 3;
+        return price;
+    }
+
+    public double getPoints(String origin, String destination){
+        City from = (City) cs.findCurrentCityByName(origin);
+        City to = (City) cs.findCurrentCityByName(destination);
+        double points = Math.abs(from.getPosition() - to.getPosition()) * 0.5;
+        return points;
     }
         
 
