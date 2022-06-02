@@ -25,7 +25,7 @@ public class Booking {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
-    //@JsonIgnore
+    @JsonIgnore
     private  User user;
 
     @ManyToOne(cascade= CascadeType.ALL, fetch= FetchType.EAGER)
