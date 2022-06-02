@@ -3,7 +3,7 @@ import "./LoginForm.css";
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../Store';
 import { loginUser } from '../../Slices/UserSlice';
-
+import { useNavigate } from 'react-router-dom';
 
 export const Login: React.FC = () => {
 
@@ -30,7 +30,10 @@ export const Login: React.FC = () => {
         };
 
       dispatch(loginUser(credentials));
-        
+    //   if(!userState.error && userState.user){
+    //     navigator('/info');
+    // }
+
         
     }
     return(

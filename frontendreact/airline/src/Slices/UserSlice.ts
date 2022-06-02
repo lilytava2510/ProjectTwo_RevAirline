@@ -32,14 +32,26 @@ type info = {
     lastName: string,
     ccn: any,
     sick: boolean,
+<<<<<<< HEAD
     ppn: any
+=======
+    ppn: any,
+   
+>>>>>>> lilianne
 }
 
     type change = {
-        email: string,
-        password:  string,
-        firstName: string,
-        lastName: string
+        userId:any,
+        email: any,
+        password: any,
+        points: any,
+        role: any,
+        firstName: any,
+        lastName: any,
+        ccn: any,
+        sick: any,
+        ppn: any,
+       
 
     }
 
@@ -98,8 +110,9 @@ export const updateUser = createAsyncThunk(
     async (change:change, thunkAPI) => {
         try{
               //axios.defaults.withCredentials = true;
-            const res = await axios.put(`http://localhost:8000/users/update`, change);
-  
+              console.log(change);
+            const res = await axios.put(`http://localhost:8000/user/update`, change);
+              
             return res.data;
         } catch (e){
             console.log(e);
@@ -110,7 +123,6 @@ export const updateUser = createAsyncThunk(
 
 
 
-//Create the slice
 export const UserSlice = createSlice({
     name: "user",
     initialState: initialUserState,
@@ -125,7 +137,7 @@ export const UserSlice = createSlice({
             state.loading = true;
         });
         builder.addCase(loginUser.fulfilled, (state, action) => {
-            //state.user = action.payload;
+            state.user = action.payload;
             state.error = false;
             state.loading = false;
         });
