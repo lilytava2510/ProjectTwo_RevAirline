@@ -30,9 +30,9 @@ type info = {
     role: any,
     firstName: string,
     lastName: string,
-    creditcard_number: any,
-    vaccination_status: boolean,
-    passport_number: any
+    ccn: any,
+    sick: boolean,
+    ppn: any
 }
 
     type change = {
@@ -48,20 +48,19 @@ export const loginUser = createAsyncThunk(
     async (credentials:Login, thunkAPI) => {
         try{
             const res = await axios.post('http://localhost:8000/user/login', credentials);
-      console.log("loginrequest");
-      console.log(res);
+            console.log("loginrequest");
+            console.log(res);
             return {
                 userId: res.data.userId,
                 email: res.data.email,
                 password: res.data.password,
                 points: res.data.points,
+                role: res.data.role,
                 firstName: res.data.firstName,
                 lastName: res.data.lastName,
                 ccn: res.data.ccn,
-                sick: res.data.sick
-
-
-
+                sick: res.data.sick,
+                ppn: res.data.ppn
             }
         } catch(e){
             return thunkAPI.rejectWithValue('wrong');

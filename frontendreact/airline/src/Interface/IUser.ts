@@ -9,8 +9,8 @@ export interface IUser {
     role: number,
     firstName: string,
     lastName: string,
-    creditcard_number: number,
-    vaccination_status: boolean,
-    passport_number: number,
-    booking: IBooking []
+    ccn: number,
+    sick: boolean,
+    ppn: number,
+    booking?: IBooking []
 }
