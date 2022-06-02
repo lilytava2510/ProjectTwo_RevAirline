@@ -31,4 +31,8 @@ public class CityService {
     public City findCurrentCityByName(String city) {
         return cr.findByCity(city);
     }
+
+    public List<City> getAllCities(){
+        return cr.findAll();
+    }
 }

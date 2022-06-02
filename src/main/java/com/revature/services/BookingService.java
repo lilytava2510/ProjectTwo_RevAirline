@@ -50,8 +50,9 @@ public class BookingService {
         if(canBook(oc.getCity(), dc.getCity(), date)) {
             double price = getPrice(origin, destination);
             Booking b = new Booking(ft, price, we, oc, dc);
+            we.setPoints((int)(getPoints(origin,  destination)));
 
-            return br.save(b);
+            return br.saveAndFlush(b);
         } else {
             return null;
         }
@@ -200,6 +201,41 @@ public class BookingService {
         City to = (City) cs.findCurrentCityByName(destination);
         double points = Math.abs(from.getPosition() - to.getPosition()) * 0.5;
         return points;
+    }
+
+    public Booking createBookingPoints(String date, int userid, String origin, String destination) {
+
+
+
+
+
+        int temp;
+        User we = us.findCurrentUserById(userid);
+        Booking b2 = null;
+        // System.out.println(we);
+
+        City oc = (City)cs.findCurrentCityByName(origin);
+        City dc = (City)cs.findCurrentCityByName(destination);
+        Date ft = Date.valueOf(date);
+        if(canBook(oc.getCity(), dc.getCity(), date)) {
+            double price = getPrice(origin, destination);
+            if(we.getPoints()> price){
+                temp = (int)(we.getPoints() - price);
+                we.setPoints(temp);
+                price = 0;
+                Booking b = new Booking(ft, price, we, oc, dc);
+                b2 = br.save(b);
+            }else if(we.getPoints() <= price) {
+                price = price - we.getPoints();
+                we.setPoints(0);
+                Booking b = new Booking(ft, price, we, oc, dc);
+                b2 =  br.save(b);
+            }
+            return b2;
+
+        } else {
+            return null;
+        }
     }
 
 
