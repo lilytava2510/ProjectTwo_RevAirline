@@ -24,13 +24,13 @@ type book = {
 }
 
 type ing = { 
-    Date: Date,
+    date: any,
     destination_city: any,
-    origin_city: any,
-
+    origin_city: any
 }
+
 export const createBook = createAsyncThunk(
-    'booking/create',
+    'reimburse/create',
     async(book:book, thunkAPI) => {
         try{
             const res = await axios.post('http://localhost:8000/create/',book);
@@ -41,13 +41,14 @@ export const createBook = createAsyncThunk(
             return thunkAPI.rejectWithValue('wrong');
         }
     }
-);
+)
+
 export const searchBooking = createAsyncThunk(
     "booking/get",
     async (tis:ing, thunkAPI) => {
         try{
               //axios.defaults.withCredentials = true;
-            const res = await axios.get(`http://localhost:8000/booking/get`, tis);
+            const res = await axios.post(`http://localhost:8000/booking/get`, tis);
   
             return res.data;
         } catch (e){
@@ -55,7 +56,6 @@ export const searchBooking = createAsyncThunk(
         }
     }  
   );
-
 
 
 

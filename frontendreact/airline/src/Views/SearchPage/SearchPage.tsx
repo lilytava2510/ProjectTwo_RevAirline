@@ -1,31 +1,26 @@
-import React, { useEffect, useInsertionEffect} from "react";
+
+import React from "react";
+
+import {useSelector} from 'react-redux';
+//import { Booking } from "../../Components/Booking/Booking";
+//import { BookingPage } from "../../Components/Booking/BookingPage"
+import { HomePage } from "../../Components/HomePage/HomePage";
 import { Navbar } from "../../Components/Navbar/Navbar";
-import {useSelector, useDispatch} from 'react-redux';
-import { AppDispatch, RootState } from "../../Store";
-import { useNavigate } from "react-router-dom";
-import { searchBooking } from "../../Slices/BookSlice";
+import { RootState } from "../../Store";
+
+
 export const SearchPage: React.FC = () => {
     
-    const HomePage = useSelector((state:RootState)=>state.book);
-    const dispatch: AppDispatch = useDispatch();
-    const navigator = useNavigate();
-   // useEffect(() => {
-    //   if(!userInfo.user){
-    //      navigator("/login");
-    //   }
-    // })
+    const available = useSelector((state:RootState)=>state.book);
+
     return(
         <>
-         <Navbar/>
+          <Navbar/>
           <h1>Welcome to Revature Airline</h1>
           <h2>Below are the flights available</h2>
-<<<<<<< HEAD
-            
-=======
-          
-          
->>>>>>> master
+          <HomePage/>
+         {/* // <Booking/>
+          //<BookingPage/> */}
         </>
     )
 }
-

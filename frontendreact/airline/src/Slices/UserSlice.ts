@@ -1,7 +1,6 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 import {IUser} from "../Interface/IUser";
-import {ICity} from "../Interface/ICity";
 
 //Figure out our default state for this slice
 
@@ -31,39 +30,45 @@ type info = {
     role: any,
     firstName: string,
     lastName: string,
-    creditcard_number: any,
-    vaccination_status: boolean,
-    passport_number: any
+    ccn: any,
+    sick: boolean,
+    ppn: any,
+   
 }
 
     type change = {
-        email: string,
-        password:  string,
-        firstName: string,
-        lastName: string
+        userId:any,
+        email: any,
+        password: any,
+        points: any,
+        role: any,
+        firstName: any,
+        lastName: any,
+        ccn: any,
+        sick: any,
+        ppn: any,
+       
 
     }
-
 
 export const loginUser = createAsyncThunk(
     'user/login',
     async (credentials:Login, thunkAPI) => {
         try{
             const res = await axios.post('http://localhost:8000/user/login', credentials);
-      console.log("loginrequest");
-      console.log(res);
+            console.log("loginrequest");
+            console.log(res);
             return {
                 userId: res.data.userId,
                 email: res.data.email,
                 password: res.data.password,
                 points: res.data.points,
+                role: res.data.role,
                 firstName: res.data.firstName,
                 lastName: res.data.lastName,
                 ccn: res.data.ccn,
-                sick: res.data.sick
-
-
-
+                sick: res.data.sick,
+                ppn: res.data.ppn
             }
         } catch(e){
             return thunkAPI.rejectWithValue('wrong');
@@ -101,19 +106,19 @@ export const updateUser = createAsyncThunk(
     async (change:change, thunkAPI) => {
         try{
               //axios.defaults.withCredentials = true;
-            const res = await axios.put(`http://localhost:8000/users/update`, change);
-  
+              console.log(change);
+            const res = await axios.put(`http://localhost:8000/user/update`, change);
+              
             return res.data;
         } catch (e){
             console.log(e);
         }
     }  
   );
- 
 
 
 
-//Create the slice
+
 export const UserSlice = createSlice({
     name: "user",
     initialState: initialUserState,
@@ -128,7 +133,7 @@ export const UserSlice = createSlice({
             state.loading = true;
         });
         builder.addCase(loginUser.fulfilled, (state, action) => {
-            //state.user = action.payload;
+            state.user = action.payload;
             state.error = false;
             state.loading = false;
         });

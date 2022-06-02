@@ -4,11 +4,11 @@ import React, {useState} from 'react';
 //import "./LoginForm.css";
 import { loginUser,toggleError,updateUser } from '../../Slices/UserSlice';
 import {useDispatch, useSelector} from "react-redux";
-import './UserInfo.css';
+
 import { RootState,AppDispatch } from '../../Store';
 import { IUser } from '../../Interface/IUser';
 
-export const UserInfo: React.FC = () => {
+export const Info: React.FC = () => {
     
     const dispatch:AppDispatch = useDispatch();
 
@@ -23,14 +23,16 @@ export const UserInfo: React.FC = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     // const [points, setPoints] = useState<any>();
-    // const [creditcard_number, setCreditcard_number] = useState<any>();
-    // const [passport_number, setPassport_number] = useState<any>();
-
-//    const vaccination_status = false;
+ const [ccn, setCreditcard_number] = useState<any>();
+    const [ppn, setPassport_number] = useState<any>();
+    //const [sick, setSick] = useState<any>();
+ const sick = true;
 //    const role = false;
-   const id = user.user?.userId;
+ //  const id = user.user?.userId;
     //const [privilege, setPrivilege] = useState<boolean>(user.user?.privilege?);
-
+    const userId = user.user?.userId;
+   const points = user.user?.points;
+   const role = user.user?.role;
  
 
     const handleInput = (event:React.ChangeEvent<HTMLInputElement>) => {
@@ -45,23 +47,37 @@ export const UserInfo: React.FC = () => {
         }  
     else if(event.target.name === "password"){
         setPassword(event.target.value);
-    } // else if(user.user) 
-    //  const userId = user.user?.userId;
-    
-//     else if(user.user?.privilege)
-//     {setPrivilege(user.user?.privilege)
-// }  
+    } 
+    else if(event.target.name === "ccn"){
+        setCreditcard_number(event.target.value);
+    }
+    else if(event.target.name === "ppn"){
+        setPassport_number(event.target.value);
+    }
+    // else if(event.target.name === "rememberMe"){
+    //     setSick(event.target.checked);
+    // }
+
+
  }
         
     const handleUpdate = (event:React.MouseEvent<HTMLButtonElement>) => {
         let change = {
+            userId, 
             email,
             password,
+            points,
+            role,
             firstName,
             lastName,
+            ccn,
+            sick,
+            ppn
+           
             
 
         };
+
 
       dispatch(updateUser(change));
         
@@ -71,31 +87,40 @@ export const UserInfo: React.FC = () => {
         <div className="login">
             <div className="text-container">
                 <h1 className="login-header"></h1>
-                <h2 className="login-header">Below please set up your booking.</h2>
+                <h2 className="login-header">Below please update your Information.</h2>
             </div>
             <form className="login-form">
             <div className="input-div">
-                  <h4 className="input-h4">Enter Firstname</h4>
+                  <h4 className="input-h4">Enter Firstname:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="firstname" placeholder="firstname" onChange={handleInput}/>
                 </div>
             <div className="input-div">
-                  <h4 className="input-h4">Enter Lastname</h4>
+                  <h4 className="input-h4">Enter Lastname:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="lastname" placeholder="lastname" onChange={handleInput}/>
                 </div>
                 <div className="input-div">
-                  <h4 className="input-h4">Enter Username</h4>
+                  <h4 className="input-h4">Enter Username:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="username" placeholder="username" onChange={handleInput}/>
                 </div>
                 <div className="input-div">
-                  <h4 className="input-h4">Enter Email</h4>
+                  <h4 className="input-h4">Enter Email:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="email" placeholder="email" onChange={handleInput}/>
                 </div>
                 <div className="input-div">
-                    <h4 className="input-h4">Enter Password</h4>
+                    <h4 className="input-h4">Enter Password:</h4>
                     <input className="login-input" type="password" name="password" placeholder="password" onChange={handleInput}/>
                 </div>
                 <div className="input-div">
-
+                <div className="input-div">
+                  <h4 className="input-h4">Enter Credit Card Number:</h4>
+                    <input autoComplete="off" className="login-input" type="text" name="ccn" placeholder="creditcard" onChange={handleInput}/>
+                </div><div className="input-div">
+                  <h4 className="input-h4">Enter Passport Number:</h4>
+                    <input autoComplete="off" className="login-input" type="text" name="ppn" placeholder="passport" onChange={handleInput}/>
+                </div>
+                <label>
+          <input name="rememberMe" checked={true} onChange={handleInput} type="checkbox" /> Tested
+                 </label>
                 </div>
             </form>
                 <button className="login-button" onClick={handleUpdate}>Update</button>

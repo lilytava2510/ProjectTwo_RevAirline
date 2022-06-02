@@ -3,7 +3,8 @@ import React from 'react';
 import './App.css';
 import { LoginPage } from './Views/LoginPage/LoginPage';
 import {BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import {SearchPage} from './Views/SearchPage/SearchPage';
+import {InfoPage} from './Views/InfoPage.tsx/InfoPage';
+//import {SearchPage} from './Views/SearchPage/SearchPage';
 
 
 function App() {
@@ -12,12 +13,14 @@ function App() {
     <Routes>
     <Route path="*" element={<Navigate to="/login" replace />} />
     <Route path="/login" element={<LoginPage />}/>
-    <Route path="/search" element={<SearchPage/>}/>
+    <Route path="/info" element={<InfoPage />}/>
     </Routes>
     </BrowserRouter>
    
-  
+
   );
 }
 
 export default App;
+
+
