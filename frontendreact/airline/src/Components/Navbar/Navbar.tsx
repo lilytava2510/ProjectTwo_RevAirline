@@ -7,7 +7,7 @@ import { logout } from '../../Slices/UserSlice';
 import { AppDispatch } from '../../Store';
 
 
-import defaultImage from '../../deafultpic.jpg';
+//import defaultImage from '../../deafultpic.jpg';
 
 import './Navbar.css';
 import { RootState } from '../../Store';

@@ -15,14 +15,16 @@ export const LoginPage: React.FC = () => {
           if(!userState.error && userState.user){
               navigator('/home')
           }
-     }, [userState]);
+     }, [navigator, userState]);
 
     return(
-        <><Navbar />
+        <>
+        <Navbar />
         <div className="login-page">
             {userState.error ? <h2 className="login-error">Hey your email or password is invalid! Please try again.</h2> : <></>}
             <Login />
-        </div></>
+        </div>
+        </>
     )
 
 }
