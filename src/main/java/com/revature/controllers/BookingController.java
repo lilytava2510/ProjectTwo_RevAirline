@@ -32,12 +32,8 @@ public class BookingController {
     public ResponseEntity<Object> handleCreate(@RequestBody LinkedHashMap<String, String> u) {
 
 
-<<<<<<< HEAD
-        Booking book = bs.createBooking(u.get("date"), price, Integer.parseInt(u.get("userId")), u.get("origin"), u.get("destination"));
-=======
 
         Booking book = bs.createBooking(u.get("date"), Integer.parseInt(u.get("userId")), u.get("origin"), u.get("destination"));
->>>>>>> master
 if(book != null){
     return new ResponseEntity<>(book, HttpStatus.CREATED);
 } else{
