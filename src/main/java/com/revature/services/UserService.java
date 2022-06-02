@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.SQLOutput;
+import java.util.List;
 
 @Service
 @Transactional
@@ -45,6 +46,10 @@ public class UserService {
 
     public User findCurrentUserById(int id) {
         return ur.findById(id).get();
+    }
+
+    public List<User> getAllUsers(){
+        return ur.findAll();
     }
 }
 
