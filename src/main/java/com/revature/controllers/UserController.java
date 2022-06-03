@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -70,8 +71,14 @@ public class UserController {
 //    }
 
     @GetMapping("/user/get/{id}")
-    public User handleGet(@PathVariable ("id") int id){
-        return us.findCurrentUserById(id);
+    public ResponseEntity handleGet(@PathVariable ("id") int id){
+        return new ResponseEntity<>(us.findCurrentUserById(id), HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/user/get")
+    public ResponseEntity<List> handleGetAllUsers() {
+        return new ResponseEntity<>(us.getAllUsers(), HttpStatus.ACCEPTED);
+
     }
 }
 

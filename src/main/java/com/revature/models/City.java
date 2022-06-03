@@ -15,7 +15,7 @@ public class City {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int cityId;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String city;
 
 
@@ -28,7 +28,7 @@ public class City {
     private List<Booking> arrivals;
 
 
-    @Column(name = "position")
+    @Column(name = "position", unique = true)
     private int position;
 
 

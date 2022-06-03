@@ -2,22 +2,24 @@ package com.revature.services;
 
 
 import com.revature.models.User;
+import com.revature.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.SQLOutput;
+import java.util.List;
 
 @Service
 @Transactional
 public class UserService {
 
 
-    private com.revature.repository.UserRepo ur;
+    private UserRepo ur;
 
 
     @Autowired
-    public UserService(com.revature.repository.UserRepo ur) {
+    public UserService(UserRepo ur) {
         this.ur = ur;
     }
 
@@ -44,6 +46,10 @@ public class UserService {
 
     public User findCurrentUserById(int id) {
         return ur.findById(id).get();
+    }
+
+    public List<User> getAllUsers(){
+        return ur.findAll();
     }
 }
 

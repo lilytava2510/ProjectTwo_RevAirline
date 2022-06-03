@@ -1,9 +1,9 @@
 package com.revature;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.models.User;
+import com.revature.models.City;
+import com.revature.repository.CityRepo;
 import com.revature.Pilot;
-import com.revature.repository.UserRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.LinkedHashMap;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -26,21 +27,32 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
 @ActiveProfiles("test")
-public class TestingUserService {
+public class TestingCityRepo {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    private UserRepo ur;
+    private CityRepo cr;
 
     @BeforeEach
-    public void resetDB() {
-        ur.deleteAll();
+    public void resetDB(){
+        cr.deleteAll();
     }
 
     private ObjectMapper om = new ObjectMapper();
+    @Test
+    @Transactional
+    public void successFindCityId() throws Exception{
 
+        City test = new City("la", 20);
+        cr.save(test);
 
+        City registeredCity = cr.findById(1).get();
+
+        assertEquals("la", registeredCity.getCity());
+        assertEquals(20, registeredCity.getPosition());
+
+    }
 
 }

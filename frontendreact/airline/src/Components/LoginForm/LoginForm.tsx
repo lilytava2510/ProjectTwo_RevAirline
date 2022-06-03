@@ -3,8 +3,12 @@ import "./LoginForm.css";
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../Store';
 import { loginUser } from '../../Slices/UserSlice';
+<<<<<<< HEAD
 import { Navbar } from '../Navbar/Navbar';
 
+=======
+import { useNavigate } from 'react-router-dom';
+>>>>>>> master
 
 export const Login: React.FC = () => {
 
@@ -31,12 +35,20 @@ export const Login: React.FC = () => {
         };
 
       dispatch(loginUser(credentials));
-        
+    //   if(!userState.error && userState.user){
+    //     navigator('/info');
+    // }
+
         
     }
     return(
+<<<<<<< HEAD
         <>
        
+=======
+    <>
+        
+>>>>>>> master
         <div className="login">
             <div className="text-container">
                 <h1 className="login-header">Welcome to Revature Airlines: </h1>
@@ -59,6 +71,10 @@ export const Login: React.FC = () => {
             </form>
                 <button className="login-button" onClick={handleLogin}>Login</button>
         </div>
+<<<<<<< HEAD
         </>
+=======
+    </>
+>>>>>>> master
     )
 }

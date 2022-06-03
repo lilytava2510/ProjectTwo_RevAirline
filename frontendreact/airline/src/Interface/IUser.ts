@@ -6,10 +6,11 @@ export interface IUser {
     email: string,
     password: string,
     points: number,
-    role: number,
-    first_name: string,
-    last_name: string,
-    creditcard_number: number,
-    vaccination_status: boolean,
-    passport_number: number
+    role: boolean,
+    firstName: string,
+    lastName: string,
+    ccn: number,
+    sick: boolean,
+    ppn: number,
+    booking?: IBooking []
 }

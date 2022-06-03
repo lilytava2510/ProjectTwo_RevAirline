@@ -5,7 +5,11 @@ import { RootState } from '../../Store';
 import { Login } from '../../Components/LoginForm/LoginForm';
 import "./LoginPage.css";
 import { Navbar } from '../../Components/Navbar/Navbar';
+<<<<<<< HEAD
 
+=======
+import { Info } from '../../Components/UserInfor/UserInfor';
+>>>>>>> master
 export const LoginPage: React.FC = () => {
 
     const userState = useSelector ((state:RootState) => state.user);
@@ -13,7 +17,7 @@ export const LoginPage: React.FC = () => {
     const navigator = useNavigate();
      useEffect(()=> {
           if(!userState.error && userState.user){
-              navigator('/home')
+              navigator('/info');
           }
      }, [navigator, userState]);
 
@@ -21,8 +25,14 @@ export const LoginPage: React.FC = () => {
         <>
         <Navbar />
         <div className="login-page">
+<<<<<<< HEAD
             {userState.error ? <h2 className="login-error">Hey your email or password is invalid! Please try again.</h2> : <></>}
             <Login />
+=======
+            {userState.error ? <h2 className="login-error" >Hey your email or password is invalid! Please try again.</h2> : <></>}
+          <Login />
+        
+>>>>>>> master
         </div>
         </>
     )
