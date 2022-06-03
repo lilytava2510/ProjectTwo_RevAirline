@@ -32,15 +32,8 @@ type info = {
     lastName: string,
     ccn: any,
     sick: boolean,
-<<<<<<< HEAD
     ppn: any
-=======
-<<<<<<< HEAD
-    ppn: any,
-=======
-    ppn: any
->>>>>>> master
->>>>>>> 0c43c131695e5e3ed6c3a0d861944606a86bafe2
+
    
 }
 

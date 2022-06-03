@@ -137,8 +137,4 @@ export const UserCreate: React.FC = () => {
                 <button className="login-button" onClick={handleUpdate}>Create Account</button>
         </div>
     )
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 0c43c131695e5e3ed6c3a0d861944606a86bafe2

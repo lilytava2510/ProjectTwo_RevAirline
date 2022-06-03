@@ -161,4 +161,24 @@ public class TestBookingController {
         //List<Booking> bookingUser = bs.findCurrentBookingByUId(1);
 
     }
+
+    @Test
+    @Transactional
+    public void successGetPrice() throws Exception {
+        LinkedHashMap<String,String> registerBody = new LinkedHashMap<>();
+        registerBody.put("date","2222-02-02");
+        registerBody.put("origin","la");
+        registerBody.put("destination","ny");
+        //User first = us.createUser("@", "pass", 1, 2, "a", "b", 123, true, 321);
+        City la = new City("la",3);
+        City holder = cs.createCity(la);
+        City ny = new City("ny", 4);
+        City temp = cs.createCity(ny);
+        //Booking record = bs.createBooking("1111-12-12", 1, "ny", "la");
+
+        mockMvc.perform(get("/booking/price").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(registerBody))
+                ).andDo(print()).andExpect(status().isAccepted()).andExpect(jsonPath("$.[0].date").value("1111-12-12"));
+
+    }
+
 }
