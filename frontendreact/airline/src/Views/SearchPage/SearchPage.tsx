@@ -2,8 +2,6 @@
 import React from "react";
 
 import {useSelector} from 'react-redux';
-import { Booking } from "../../Components/Booking/Booking";
-import { BookingPage } from "../../Components/Booking/BookingPage";
 //import { Booking } from "../../Components/Booking/Booking";
 //import { BookingPage } from "../../Components/Booking/BookingPage"
 import { HomePage } from "../../Components/HomePage/HomePage";
@@ -25,4 +23,4 @@ export const SearchPage: React.FC = () => {
           //<BookingPage/> */}
         </>
     )
-}
+        }
