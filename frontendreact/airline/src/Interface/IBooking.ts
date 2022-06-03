@@ -2,10 +2,11 @@ import { IUser} from "./IUser";
 
 
 export interface IBooking {
-    bookingId: number,
-    date: Date,
+    bookingId?: number,
+    date: String,
     price: number,
-    destination_city: number,
-    origin_city: number
+    destination: number,
+    origin: number,
+    userId?: number
 
 }

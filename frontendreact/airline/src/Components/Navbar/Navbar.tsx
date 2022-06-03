@@ -35,7 +35,7 @@ export const Navbar: React.FC = () => {
                     <Link to={"/home"} className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to={"/booking"} className="nav-link">Book</Link>
+                    <Link to={"/bookingPage"} className="nav-link">Book</Link>
                 </li>
                
                 <li className="nav-item">

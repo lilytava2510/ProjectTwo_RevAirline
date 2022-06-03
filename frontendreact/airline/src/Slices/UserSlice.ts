@@ -32,7 +32,8 @@ type info = {
     lastName: string,
     ccn: any,
     sick: boolean,
-    ppn: any,
+    ppn: any
+
    
 }
 
@@ -90,17 +91,17 @@ export const getUserInfo = createAsyncThunk(
     }  
   );
 
-export const logout = createAsyncThunk(
-    "user/logout",
-    async (thunkAPI) => {
-        try{
-            axios.defaults.withCredentials = true;
-            const res = axios.get("http://localhost:8000/users/logout");
-        } catch(e){
-            console.log(e);
-        }
-    }
-);
+// export const logout = createAsyncThunk(
+//     "user/logout",
+//     async (thunkAPI) => {
+//         try{
+//             axios.defaults.withCredentials = true;
+//             const res = axios.get("http://localhost:8000/users/logout");
+//         } catch(e){
+//             console.log(e);
+//         }
+//     }
+// );
 export const updateUser = createAsyncThunk(
     "user/update",
     async (change:change, thunkAPI) => {
@@ -116,7 +117,21 @@ export const updateUser = createAsyncThunk(
     }  
   );
 
+  export const createUser = createAsyncThunk(
+    '/user/',
+    async(change:change, thunkAPI) => {
+         try{
+              const res = await axios.post('http://localhost:8000/user/',change);
+        
+        return  {
+                
+        }
 
+        } catch(e){
+            return thunkAPI.rejectWithValue('Wrong');
+        }
+    }
+);
 
 
 export const UserSlice = createSlice({
@@ -125,6 +140,11 @@ export const UserSlice = createSlice({
     reducers: {
         toggleError : (state) => {
             state.error = !state.error;
+        },
+        logout : (state) =>{
+            state.user = undefined;
+            state.passenger = undefined;
+            state.currentProfile = undefined;
         }
     },
     extraReducers: (builder) => {
@@ -158,6 +178,6 @@ export const UserSlice = createSlice({
 }
 })
 
-   export const {toggleError} = UserSlice.actions;
+   export const {toggleError, logout} = UserSlice.actions;
 
 export default UserSlice.reducer;

@@ -80,8 +80,8 @@ public class UserController {
 //    }
 
     @GetMapping("/user/get/{id}")
-    public User handleGet(@PathVariable ("id") int id){
-        return us.findCurrentUserById(id);
+    public ResponseEntity handleGet(@PathVariable ("id") int id){
+        return new ResponseEntity<>(us.findCurrentUserById(id), HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/user/get")

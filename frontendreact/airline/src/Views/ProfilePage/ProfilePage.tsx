@@ -7,17 +7,28 @@ import { IUser } from "../../Interface/IUser";
 import { updateUser } from "../../Slices/UserSlice";
 import { Info } from "../../Components/UserInfor/UserInfor";
 import './InfoPage.css';
+import { IBooking } from "../../Interface/IBooking";
+import { BookingPage } from "../../Components/Booking/Booking";
+import { getBooks } from "../../Slices/BookSlice";
 
 export const InfoPage: React.FC = () => {
 
 const userInfo = useSelector((state:RootState) => state.user);
+const book = useSelector((state:RootState) => state.book);
 const dispatch:AppDispatch = useDispatch();
 const navigator = useNavigate();
+let check = true;
 useEffect(()=> {
    if(userInfo.error && userInfo.user){
       navigator('/info');
   }
-},[userInfo.user]);
+  else if(!book.booking && userInfo.user){
+    console.log(userInfo.user.userId);
+    dispatch (getBooks(userInfo.user.userId));
+
+   
+}
+},[userInfo.user,book.booking]);
 return(
     <>
     <Navbar/>
@@ -43,8 +54,33 @@ return(
             }): <Info/>
             
         }
+
+        <div>
+        {book.booking?
+            book.booking.map((post:IBooking) => {
+                return <BookingPage {...post} key={post.bookingId}/>
+            }): 
+            <></>
+            
+        }
+        </div>
+        
         </table>
-  </>
+        {userInfo.user?.booking?
+            <div>
+        {userInfo.user.booking.map((post:IBooking) => {
+                return (
+                <BookingPage {...post} key={post.bookingId}/>
+            )
+            })}
+            </div>
+            
+            :
+         <h1>no posts to display</h1>
+}
+           
+
+    </>      
 )
 
 }
