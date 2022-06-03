@@ -20,8 +20,8 @@ export const BookCreate: React.FC = () => {
  
     const [date, setDate] = useState<Date>();
     const [price, setPrice] = useState<any>();
-    const [destination_city, setDestination_City] = useState<number>();
-    const [origin_city, setOrigin_city] = useState<number>();
+    const [destination, setDestination] = useState<number>();
+    const [origin, setOrigin] = useState<number>();
  
     //const [sick, setSick] = useState<any>();
  const sick = true;
@@ -35,26 +35,26 @@ export const BookCreate: React.FC = () => {
         if(event.target.name === "date"){
             setDate(event.target.value);
         }
-        else if(event.target.name === "price"){
-            setPrice(event.target.value);  
-        }
-        else if(event.target.name === "destionation_city"){
-            setDestination_City(event.target.value);  
+       
+        else if(event.target.name === "destination"){
+            setDestination(event.target.value);  
         }  
-    else if(event.target.name === "origin_city"){
-        setOrigin_city(event.target.value);
+    else if(event.target.name === "origin"){
+        setOrigin(event.target.value);
     } 
   
 }
 
- }
+ 
         
     const handleUpdate = (event:React.MouseEvent<HTMLButtonElement>) => {
         let book = {
             date,
-            price,
-            destination_city,
-            origin_city
+            //price,
+            origin,
+            destination,
+            userId
+            
            
            
             
@@ -75,20 +75,21 @@ export const BookCreate: React.FC = () => {
             <form className="login-form">
             <div className="input-div">
                   <h4 className="input-h4">Enter Date:</h4>
-                    <input autoComplete="off" className="login-input" type="text" name="firstname" placeholder="firstname" onChange={handleInput}/>
+                    <input autoComplete="off" className="login-input" type="text" name="date" placeholder="yyyy-mm-dd" onChange={handleInput}/>
                 </div>
-            <div className="input-div">
+            {/*<div className="input-div">
                   <h4 className="input-h4">Price:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="lastname" placeholder="lastname" onChange={handleInput}/>
+                </div>*/}
+                 <div className="input-div">
+                  <h4 className="input-h4">Enter Origin:</h4>
+                    <input autoComplete="off" className="login-input" type="text" name="origin" placeholder="origin" onChange={handleInput}/>
                 </div>
                 <div className="input-div">
                   <h4 className="input-h4">Enter Destination:</h4>
-                    <input autoComplete="off" className="login-input" type="text" name="username" placeholder="username" onChange={handleInput}/>
+                    <input autoComplete="off" className="login-input" type="text" name="destination" placeholder="destination" onChange={handleInput}/>
                 </div>
-                <div className="input-div">
-                  <h4 className="input-h4">Enter Origin:</h4>
-                    <input autoComplete="off" className="login-input" type="text" name="email" placeholder="email" onChange={handleInput}/>
-                </div>
+               
                 <div>
                 <label>
           <input name="rememberMe" checked={true} onChange={handleInput} type="checkbox" /> Tested

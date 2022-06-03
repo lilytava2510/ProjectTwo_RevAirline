@@ -6,7 +6,7 @@ import {BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import {InfoPage} from './Views/ProfilePage/ProfilePage';
 import { UserCreate } from './Components/UserCreate/UserCreate';
 //import {SearchPage} from './Views/SearchPage/SearchPage';
-import { UserCreate } from './Components/UserCreate/UserCreate';
+
 
 
 function App() {
