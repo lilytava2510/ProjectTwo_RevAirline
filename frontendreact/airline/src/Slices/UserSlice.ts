@@ -32,12 +32,8 @@ type info = {
     lastName: string,
     ccn: any,
     sick: boolean,
-<<<<<<< HEAD
     ppn: any
-=======
-    ppn: any,
    
->>>>>>> lilianne
 }
 
     type change = {
@@ -120,7 +116,21 @@ export const updateUser = createAsyncThunk(
     }  
   );
 
+  export const createUser = createAsyncThunk(
+    '/user/',
+    async(change:change, thunkAPI) => {
+         try{
+              const res = await axios.post('http://localhost:8000/user/',change);
+        
+        return  {
+                
+        }
 
+        } catch(e){
+            return thunkAPI.rejectWithValue('Wrong');
+        }
+    }
+);
 
 
 export const UserSlice = createSlice({
