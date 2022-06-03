@@ -107,16 +107,10 @@ public class BookingController {
     }
 
 
-<<<<<<< HEAD
-    /*@GetMapping("/booking/get/price")
-    public ResponseEntity<Object> handleGet() {
-        return new ResponseEntity<>(bs.findCurrentBookingByUId(id), HttpStatus.ACCEPTED);
-=======
     @PostMapping("/booking/price")
     public ResponseEntity<Object> handlePrice(@RequestBody LinkedHashMap<String, String> u) {
 
         return new ResponseEntity<>(bs.searchPrice(u.get("date"), u.get("origin"), u.get("destination")), HttpStatus.ACCEPTED);
->>>>>>> 0c43c131695e5e3ed6c3a0d861944606a86bafe2
 
     }*/
 

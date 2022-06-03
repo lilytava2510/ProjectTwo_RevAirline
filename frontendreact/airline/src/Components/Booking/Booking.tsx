@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 import { setDefaultResultOrder } from 'dns';
 import React, {useState} from 'react';
@@ -9,12 +8,9 @@ import { BookSlice, createBook } from '../../Slices/BookSlice';
 import { RootState,AppDispatch } from '../../Store';
 import { IUser } from '../../Interface/IUser';
 import { IBooking } from '../../Interface/IBooking';
-=======
->>>>>>> 0c43c131695e5e3ed6c3a0d861944606a86bafe2
 
 export const BookingPage: React.FC <IBooking>= (book:IBooking) => {
 
-<<<<<<< HEAD
     const user = useSelector((state:RootState) => state.user);
     
 
@@ -31,9 +27,6 @@ export const BookingPage: React.FC <IBooking>= (book:IBooking) => {
  //const role = false;
  const userId = user.user?.userId;
  console.log(book.bookingId);
-=======
-export const BookingPage: React.FC = () => {
->>>>>>> 0c43c131695e5e3ed6c3a0d861944606a86bafe2
     return(
         <>
         <table>
