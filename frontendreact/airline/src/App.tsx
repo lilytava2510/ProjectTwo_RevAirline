@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import { LoginPage } from './Views/LoginPage/LoginPage';
 import {BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import {InfoPage} from './Views/InfoPage.tsx/InfoPage';
+import {InfoPage} from './Views/ProfilePage/ProfilePage';
 //import {SearchPage} from './Views/SearchPage/SearchPage';
 
 
@@ -16,7 +16,7 @@ function App() {
     <Route path="/info" element={<InfoPage />}/>
     </Routes>
     </BrowserRouter>
-   
+   // stuff
 
   );
 }

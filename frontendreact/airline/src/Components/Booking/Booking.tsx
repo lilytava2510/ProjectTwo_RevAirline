@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-export const BookingPage: React.FC = () => {
+export const Booking: React.FC = () => {
     return(
         <>
             <h3></h3>

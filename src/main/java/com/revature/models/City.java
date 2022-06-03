@@ -28,7 +28,7 @@ public class City {
     private List<Booking> arrivals;
 
 
-    @Column(name = "position")
+    @Column(name = "position", unique = true)
     private int position;
 
 

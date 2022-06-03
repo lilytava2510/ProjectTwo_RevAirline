@@ -205,10 +205,6 @@ public class BookingService {
 
     public Booking createBookingPoints(String date, int userid, String origin, String destination) {
 
-
-
-
-
         int temp;
         User we = us.findCurrentUserById(userid);
         Booking b2 = null;
@@ -237,6 +233,15 @@ public class BookingService {
             return null;
         }
     }
+
+    public double searchPrice(String origin, String destination, String date){
+        if(canBook(origin, destination, date)){
+            return (double)getPrice(origin, destination);
+        }else {
+            return 0.0;
+        }
+    }
+
 
 
 }
