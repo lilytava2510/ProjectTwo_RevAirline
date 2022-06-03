@@ -32,13 +32,12 @@ public class BookingController {
     public ResponseEntity<Object> handleCreate(@RequestBody LinkedHashMap<String, String> u) {
 
 
-
         Booking book = bs.createBooking(u.get("date"), Integer.parseInt(u.get("userId")), u.get("origin"), u.get("destination"));
-if(book != null){
-    return new ResponseEntity<>(book, HttpStatus.CREATED);
-} else{
-    return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
-}
+        if (book != null) {
+            return new ResponseEntity<>(book, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+        }
 
     }
 
@@ -76,11 +75,11 @@ if(book != null){
     @PostMapping("/booking/filter")
     public ResponseEntity<Object> handleSearch(@RequestBody LinkedHashMap<String, String> u) {
 
-           List<Booking> book = bs.findCurrentBookingByDestination(u.get("date"), u.get("origin"), u.get("destination"));
+        List<Booking> book = bs.findCurrentBookingByDestination(u.get("date"), u.get("origin"), u.get("destination"));
 
-        if(book != null){
+        if (book != null) {
             return new ResponseEntity<>(book, HttpStatus.ACCEPTED);
-        } else{
+        } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
         }
 
@@ -90,20 +89,34 @@ if(book != null){
     public ResponseEntity<Object> handleCreatePoints(@RequestBody LinkedHashMap<String, String> u) {
 
 
-
         Booking book = bs.createBookingPoints(u.get("date"), Integer.parseInt(u.get("userId")), u.get("origin"), u.get("destination"));
-        if(book != null){
+        if (book != null) {
             return new ResponseEntity<>(book, HttpStatus.CREATED);
-        } else{
+        } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
         }
 
+
+//    @GetMapping("/booking/get/price")
+//    public ResponseEntity<Object> handleGet() {
+//        return new ResponseEntity<>(bs.findCurrentBookingByUId(id), HttpStatus.ACCEPTED);
+//
+//    }
+//
+//
     }
 
 
+<<<<<<< HEAD
     /*@GetMapping("/booking/get/price")
     public ResponseEntity<Object> handleGet() {
         return new ResponseEntity<>(bs.findCurrentBookingByUId(id), HttpStatus.ACCEPTED);
+=======
+    @PostMapping("/booking/price")
+    public ResponseEntity<Object> handlePrice(@RequestBody LinkedHashMap<String, String> u) {
+
+        return new ResponseEntity<>(bs.searchPrice(u.get("date"), u.get("origin"), u.get("destination")), HttpStatus.ACCEPTED);
+>>>>>>> 0c43c131695e5e3ed6c3a0d861944606a86bafe2
 
     }*/
 

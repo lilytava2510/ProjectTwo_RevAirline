@@ -91,31 +91,31 @@ export const Info: React.FC = () => {
             </div>
             <form className="login-form">
             <div className="input-div">
-                  <h4 className="input-h4">Enter Firstname:</h4>
+                  <h4 className="input-h4">Enter New Firstname:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="firstname" placeholder="firstname" onChange={handleInput}/>
                 </div>
             <div className="input-div">
-                  <h4 className="input-h4">Enter Lastname:</h4>
+                  <h4 className="input-h4">Enter New Lastname:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="lastname" placeholder="lastname" onChange={handleInput}/>
                 </div>
                 <div className="input-div">
-                  <h4 className="input-h4">Enter Username:</h4>
+                  <h4 className="input-h4">Enter New Username:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="username" placeholder="username" onChange={handleInput}/>
                 </div>
                 <div className="input-div">
-                  <h4 className="input-h4">Enter Email:</h4>
+                  <h4 className="input-h4">Enter New Email:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="email" placeholder="email" onChange={handleInput}/>
                 </div>
                 <div className="input-div">
-                    <h4 className="input-h4">Enter Password:</h4>
+                    <h4 className="input-h4">Enter New Password:</h4>
                     <input className="login-input" type="password" name="password" placeholder="password" onChange={handleInput}/>
                 </div>
                 <div className="input-div">
                 <div className="input-div">
-                  <h4 className="input-h4">Enter Credit Card Number:</h4>
+                  <h4 className="input-h4">Enter New Credit Card Number:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="ccn" placeholder="creditcard" onChange={handleInput}/>
                 </div><div className="input-div">
-                  <h4 className="input-h4">Enter Passport Number:</h4>
+                  <h4 className="input-h4">Enter New Passport Number:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="ppn" placeholder="passport" onChange={handleInput}/>
                 </div>
                 <label>

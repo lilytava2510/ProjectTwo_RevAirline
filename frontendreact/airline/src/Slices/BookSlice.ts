@@ -32,7 +32,7 @@ type ing = {
 }
 
 export const createBook = createAsyncThunk(
-    'reimburse/create',
+    'book/create',
     async(book:book, thunkAPI) => {
         try{
             const res = await axios.post('http://localhost:8000/booking/',book);

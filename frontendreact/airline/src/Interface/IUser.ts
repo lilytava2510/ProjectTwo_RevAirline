@@ -6,7 +6,7 @@ export interface IUser {
     email: string,
     password: string,
     points: number,
-    role: number,
+    role: boolean,
     firstName: string,
     lastName: string,
     ccn: number,
