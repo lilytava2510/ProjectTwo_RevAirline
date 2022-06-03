@@ -112,7 +112,7 @@ public class BookingController {
 
         return new ResponseEntity<>(bs.searchPrice(u.get("date"), u.get("origin"), u.get("destination")), HttpStatus.ACCEPTED);
 
-    }*/
+    }
 
 
 }

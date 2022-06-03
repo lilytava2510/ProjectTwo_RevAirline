@@ -12,5 +12,5 @@ export interface IUser {
     ccn: number,
     sick: boolean,
     ppn: number,
-    booking?: IBooking []
+    bookingList?: IBooking []
 }

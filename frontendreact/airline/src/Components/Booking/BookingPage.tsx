@@ -18,10 +18,10 @@ export const BookCreate: React.FC = () => {
      const dispatch:AppDispatch = useDispatch();
 
  
-    const [date, setDate] = useState<Date>();
+    const [date, setDate] = useState<any>();
     const [price, setPrice] = useState<any>();
-    const [destination, setDestination] = useState<number>();
-    const [origin, setOrigin] = useState<number>();
+    const [destination, setDestination] = useState<any>();
+    const [origin, setOrigin] = useState<any>();
  
     //const [sick, setSick] = useState<any>();
  const sick = true;

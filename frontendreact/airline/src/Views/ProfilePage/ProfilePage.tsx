@@ -14,21 +14,18 @@ import { getBooks } from "../../Slices/BookSlice";
 export const InfoPage: React.FC = () => {
 
 const userInfo = useSelector((state:RootState) => state.user);
-const book = useSelector((state:RootState) => state.book);
+//const book = useSelector((state:RootState) => state.book);
 const dispatch:AppDispatch = useDispatch();
 const navigator = useNavigate();
 let check = true;
 useEffect(()=> {
-   if(userInfo.error && userInfo.user){
-      navigator('/info');
+   if(userInfo.error && !userInfo.user){
+      navigator('/login');
   }
-  else if(!book.booking && userInfo.user){
-    console.log(userInfo.user.userId);
-    dispatch (getBooks(userInfo.user.userId));
-
-   
-}
-},[userInfo.user,book.booking]);
+//   else if(!book.booking && userInfo.user){
+//     console.log(userInfo.user.userId);
+//     dispatch (getBooks(userInfo.user.userId));}
+},[userInfo.user]);
 return(
     <>
     <Navbar/>
@@ -36,10 +33,8 @@ return(
     <h1 className="login"> {userInfo.user?.firstName}Profile Page</h1>
     <h2 className="login">Your Information Below</h2>
     <table className="login" >
-
-                
-
-               <th>
+        <thead>
+               <tr>
                 <td>UserID: {userInfo.user?.userId}</td>
                 <td>First Name: {userInfo.user?.firstName}</td>
                 <td>LastName: {userInfo.user?.lastName}</td>
@@ -47,38 +42,36 @@ return(
                 <td>Password: {userInfo.user?.password}</td>
                 <td>Credit Card: {userInfo.user?.ccn}</td>
                 <td>Passport: {userInfo.user?.ppn}</td>
-            </th>
+            </tr>
+            </thead>
             {userInfo.passenger?
             userInfo.passenger.map((post:IUser) => {
                 return <Info {...post} key={post.userId}/>
             }): <Info/>
             
         }
-
-        <div>
-        {book.booking?
-            book.booking.map((post:IBooking) => {
-                return <BookingPage {...post} key={post.bookingId}/>
-            }): 
-            <></>
-            
-        }
-        </div>
-        
         </table>
-        {userInfo.user?.booking?
-            <div>
-        {userInfo.user.booking.map((post:IBooking) => {
+        <table className="login">
+        <thead>
+        <tr>
+             <th>BookingId</th>
+             <th>Date</th>
+             <th>Origin</th>
+             <th>Destination</th>
+             <th>Price</th>
+             <th>PassengerId</th>
+         </tr>
+         </thead>
+        {userInfo.user?.bookingList?
+          userInfo.user.bookingList.map((post:IBooking) => {
                 return (
-                <BookingPage {...post} key={post.bookingId}/>
+                <BookingPage {...post} key={post.bookingid}/>
             )
-            })}
-            </div>
-            
-            :
-         <h1>no posts to display</h1>
-}
-           
+            }):
+            <tr>
+                <td>no posts to display</td>
+            </tr>}
+           </table>
 
     </>      
 )
