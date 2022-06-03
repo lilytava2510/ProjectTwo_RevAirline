@@ -101,11 +101,11 @@ if(book != null){
     }
 
 
-    @GetMapping("/booking/get/price")
-    public ResponseEntity<Object> handleGet() {
-        return new ResponseEntity<>(bs.findCurrentBookingByUId(id), HttpStatus.ACCEPTED);
-
-    }
+//    @GetMapping("/booking/get/price")
+//    public ResponseEntity<Object> handleGet() {
+//        return new ResponseEntity<>(bs.findCurrentBookingByUId(id), HttpStatus.ACCEPTED);
+//
+//    }
 
 
 }

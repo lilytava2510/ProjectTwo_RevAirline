@@ -13,13 +13,7 @@ function App() {
     <Routes>
     <Route path="*" element={<Navigate to="/login" replace />} />
     <Route path="/login" element={<LoginPage />}/>
-<<<<<<< HEAD
-    <Route path="/search" element={<SearchPage/>}/> {/* create booking; */}
-    {/* <Route path="/profile" element={<ProfilePage/>}/> */} {/* account - create, update, ; */}
-    {/* <Route path="/pay" element={<PaymentPage/>}/> */}
-=======
     <Route path="/info" element={<InfoPage />}/>
->>>>>>> lilianne
     </Routes>
     </BrowserRouter>
    

@@ -32,12 +32,8 @@ type info = {
     lastName: string,
     ccn: any,
     sick: boolean,
-<<<<<<< HEAD
-    ppn: any
-=======
     ppn: any,
    
->>>>>>> lilianne
 }
 
     type change = {
