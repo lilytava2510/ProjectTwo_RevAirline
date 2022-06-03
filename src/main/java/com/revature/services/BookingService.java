@@ -47,7 +47,7 @@ public class BookingService {
         City oc = (City)cs.findCurrentCityByName(origin);
         City dc = (City)cs.findCurrentCityByName(destination);
         Date ft = Date.valueOf(date);
-        if(canBook(oc.getCity(), dc.getCity(), date)) {
+        if(canBook(origin, destination, date)) {
             double price = getPrice(origin, destination);
             Booking b = new Booking(ft, price, we, oc, dc);
             we.setPoints((int)(getPoints(origin,  destination)));

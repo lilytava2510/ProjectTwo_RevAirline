@@ -31,9 +31,14 @@ public class UserController {
         int ccn = Integer.parseInt(u.get("ccn"));
         int ppn = Integer.parseInt(u.get("ppn"));
 
-        User we = us.createUser(u.get("email"), u.get("password"), points, role, u.get("firstName"), u.get("lastName"), ccn, sick, ppn);
+        try{
+            User we = us.createUser(u.get("email"), u.get("password"), points, role, u.get("firstName"), u.get("lastName"), ccn, sick, ppn);
 
-        return new ResponseEntity<>(we, HttpStatus.CREATED);
+            return new ResponseEntity<>(we, HttpStatus.CREATED);
+        }catch(Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
+
     }
 
     @PostMapping("/user/login")
@@ -47,7 +52,7 @@ public class UserController {
             System.out.println(we.toString());
             return new ResponseEntity<>(we, HttpStatus.ACCEPTED);
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
     @PutMapping("/user/update")
@@ -59,10 +64,14 @@ public class UserController {
         int ppn = Integer.parseInt(u.get("ppn"));
         int userId = Integer.parseInt(u.get("userId"));
 
+        try {
+            User we = us.updateUser(userId, ccn, u.get("email"), u.get("firstName"), u.get("lastName"), u.get("password"), points, ppn, role, sick);
 
-        User we = us.updateUser(userId, ccn, u.get("email"), u.get("firstName"), u.get("lastName"), u.get("password"), points, ppn, role, sick);
+            return new ResponseEntity<>(we, HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
 
-        return new ResponseEntity<>(we, HttpStatus.ACCEPTED);
+        }
     }
 
 //    @GetMapping("/user/get/{email}")
@@ -76,7 +85,7 @@ public class UserController {
     }
 
     @GetMapping("/user/get")
-    public ResponseEntity<List> handleGetAllUsers() {
+    public ResponseEntity<List> handleGetAllUsers(){
         return new ResponseEntity<>(us.getAllUsers(), HttpStatus.ACCEPTED);
 
     }

@@ -33,11 +33,11 @@ public class BookingController {
 
 
 
-        Booking book = bs.createBooking(u.get("date"), Integer.parseInt(u.get("userId")), u.get("origin"), u.get("destination"));
-if(book != null){
-    return new ResponseEntity<>(book, HttpStatus.CREATED);
-} else{
-    return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+             Booking book = bs.createBooking(u.get("date"), Integer.parseInt(u.get("userId")), u.get("origin"), u.get("destination"));
+            if(book != null){
+                return new ResponseEntity<>(book, HttpStatus.CREATED);
+            } else{
+             return new ResponseEntity<>( HttpStatus.NOT_ACCEPTABLE);
 }
 
     }
@@ -101,11 +101,11 @@ if(book != null){
     }
 
 
-    @GetMapping("/booking/get/price")
-    public ResponseEntity<Object> handleGet() {
-        return new ResponseEntity<>(bs.findCurrentBookingByUId(id), HttpStatus.ACCEPTED);
+   // @GetMapping("/booking/get/price")
+    //public ResponseEntity<Object> handleGet() {
+     //   return new ResponseEntity<>(bs.findCurrentBookingByUId(id), HttpStatus.ACCEPTED);
 
-    }
+ //   }
 
 
 }
