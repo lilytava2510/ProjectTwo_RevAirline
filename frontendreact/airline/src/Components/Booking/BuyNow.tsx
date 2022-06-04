@@ -1,6 +1,6 @@
 
 //import { setDefaultResultOrder } from 'dns';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 //import "./LoginForm.css";
 //import { loginUser,toggleError, createUser } from '../../Slices/UserSlice';
 import {useDispatch, useSelector} from "react-redux";
@@ -8,6 +8,7 @@ import { BookSlice, createBook , pointsBook } from '../../Slices/BookSlice';
 import { RootState,AppDispatch } from '../../Store';
 //import { IUser } from '../../Interface/IUser';
 import { IBooking } from '../../Interface/IBooking';
+import "../LoginForm/LoginForm.css";
 
 export const BuyNow:React.FC<IBooking> = (book:IBooking) => {
 
@@ -20,6 +21,10 @@ export const BuyNow:React.FC<IBooking> = (book:IBooking) => {
    const userId = user.user?.userId;
 
     const dispatch:AppDispatch = useDispatch();
+    useEffect(()=> {
+    
+    
+     },[user]);
 
     const handleBuy = (event:React.MouseEvent<HTMLButtonElement>) => {
         let tis = {
@@ -54,7 +59,7 @@ export const BuyNow:React.FC<IBooking> = (book:IBooking) => {
  //const role = false;
  
     return(
-        <tbody>
+        <tbody className="login">
             <tr>
                 {/*<td>{book.bookingid}</td>*/}
                 <td>{book.date}</td>
@@ -62,15 +67,13 @@ export const BuyNow:React.FC<IBooking> = (book:IBooking) => {
                 <td>{book.destination.city}</td>
                 <td>{book.price}</td>
                 <td>{userId}</td>
-            </tr>
-            <tr>
-                    {(user.user?.role == 2 || user.user?.role == 1)?
+                    {user.user?.role == 2 || user.user?.role == 1?
                 <td>
-                    <button className="buy-button" onClick={handleBuy}>Use credit</button> 
+                    <button className="login-button" onClick={handleBuy}>Use credit</button> 
                 </td>: <></> }
-                {(user.user?.role == 2)?
+                {user.user?.role == 2?
                 <td>
-                    <button className="points-button" onClick={handlePoints}>Use points</button>
+                    <button className="login-button" onClick={handlePoints}>Use points</button>
                 </td>: <></>}
             </tr>
         </tbody>

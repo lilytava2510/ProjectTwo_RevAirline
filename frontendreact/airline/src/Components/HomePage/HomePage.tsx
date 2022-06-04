@@ -72,11 +72,13 @@ import React, {useState} from 'react';
                  <div className="input-div">
                      <h4 className="input-h4">From:</h4>
                      <select name="type" id="from" onChange={handleSelect}>
+                     <option></option>
               {routes.cities?
               routes.cities.map((element:ICity) => (
               <option  key={element.cityId} value={element.city} >{element.city}</option>
               )): <option></option>}</select>
               <select name="type" id="to" onChange={handleSelect}>
+              <option></option>
               {routes.cities?
               routes.cities.map((element:ICity) => (
               <option  key={element.cityId} value={element.city} >{element.city}</option>

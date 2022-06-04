@@ -18,13 +18,15 @@ export const SearchPage: React.FC = () => {
   
     const available = useSelector((state:RootState)=>state.book);
     const city = useSelector((state:RootState)=>state.city);
+    const userState = useSelector ((state:RootState) => state.user);
     const dispatch:AppDispatch = useDispatch();
 //const navigator = useNavigate();
     useEffect(()=> {
       if(!city.cities){
          dispatch(getCity());
      }
-   },[city.cities, available])
+   },[city.cities, available, userState])
+   console.log(userState.user?.role);
     return(
         <>
           <Navbar/>
