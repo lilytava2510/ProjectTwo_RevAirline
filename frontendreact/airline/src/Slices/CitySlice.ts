@@ -53,7 +53,11 @@ export const CitySlice = createSlice({
     reducers: {
         toggleError : (state) => {
             state.error = !state.error;
+        },
+        clearCities : (state) => {
+            state.cities = undefined;
         }
+
     },
     extraReducers: (builder) => {
             builder.addCase(getCity.pending, (state, action)=> {
@@ -77,6 +81,7 @@ export const CitySlice = createSlice({
                 state.city = action.payload;
                 state.error = false;
                 state.loading = false;
+                state.cities = undefined;
             });
             builder.addCase(createCity.rejected, (state, action)=> {
                 state.error = true;
@@ -86,6 +91,6 @@ export const CitySlice = createSlice({
     }
 });
 
-   export const {toggleError} = CitySlice.actions;
+   export const {toggleError, clearCities} = CitySlice.actions;
 
 export default CitySlice.reducer;
