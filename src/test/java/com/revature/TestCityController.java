@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.LinkedHashMap;
@@ -54,6 +55,7 @@ public class TestCityController {
         registerBody.put("position","20");
 
 
+
         mockMvc.perform(post("/city/").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(registerBody))
                 ).andDo(print()).andExpect(status().isCreated()).andExpect(jsonPath("$.city").value("la"))
                 .andExpect(jsonPath("$.position").value(20)).andExpect(jsonPath("$.cityId").value(1));
@@ -61,6 +63,23 @@ public class TestCityController {
 
 
 
+    }
+
+    @Test
+    @Transactional
+    public void failedCreateCity() throws Exception{
+        LinkedHashMap<String,String> registerBody = new LinkedHashMap<>();
+        registerBody.put("city","la");
+        registerBody.put("position","20");
+        City la = new City("la",3);
+        City holder = cs.createCity(la);
+        City ny = new City("ny", 4);
+        City temp = cs.createCity(ny);
+
+        MvcResult content = mockMvc.perform(post("/city/").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(registerBody))
+        ).andDo(print()).andExpect(status().isCreated()).andReturn();
+        String result = content.getResponse().getContentAsString();
+        assertEquals("",result);
     }
 
     @Test

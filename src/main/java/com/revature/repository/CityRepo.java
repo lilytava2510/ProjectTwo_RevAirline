@@ -15,4 +15,6 @@ public interface CityRepo extends JpaRepository<City, Integer>,  CrudRepository<
 
 
     City findByCity(String city);
+
+    City findByPosition(int position);
 }

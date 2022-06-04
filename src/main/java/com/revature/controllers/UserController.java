@@ -3,6 +3,7 @@ package com.revature.controllers;
 
 import com.revature.models.User;
 import com.revature.services.UserService;
+import com.revature.util.LoggingUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,8 +45,10 @@ public class UserController {
 
         try {
             User we = us.getUserByEmailAndPassword(email, password);
-            System.out.println(we.toString());
-            return new ResponseEntity<>(we, HttpStatus.ACCEPTED);
+            if(we == null) {
+                LoggingUtil.logger.warn("improper attempt at login on email: " + email);
+                return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+            }else{return new ResponseEntity<>(we, HttpStatus.ACCEPTED);}
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }

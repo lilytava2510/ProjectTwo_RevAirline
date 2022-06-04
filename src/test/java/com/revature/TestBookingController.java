@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -87,7 +88,6 @@ public class TestBookingController {
         bookingBody.put("origin","ny");
         bookingBody.put("destination","la");
 
-
         mockMvc.perform(post("/booking/").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(bookingBody))
                 ).andDo(print()).andExpect(status().isCreated()).andExpect(jsonPath("$.date").value("1111-12-12"))
                 .andExpect(jsonPath("$.bookingid").value(8)).andExpect(jsonPath("$.price").value(30.0))
@@ -124,21 +124,20 @@ public class TestBookingController {
         City holder = cs.createCity(la);
         City ny = new City("ny", 4);
         City temp = cs.createCity(ny);
-        Booking record = bs.createBooking("1111-12-12", 13, "ny", "la");
+        Booking record = bs.createBooking("1111-12-12", 15, "ny", "la");
         LinkedHashMap<String,String> registerBody = new LinkedHashMap<>();
         registerBody.put("price","3");
-        registerBody.put("bookingid","16");
+        registerBody.put("bookingid","18");
         registerBody.put("date","2222-02-02");
-        registerBody.put("userId","13");
+        registerBody.put("userId","15");
         registerBody.put("origin","la");
         registerBody.put("destination","ny");
 
-
         mockMvc.perform(put("/booking/update").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(registerBody))
                 ).andDo(print()).andExpect(status().isAccepted()).andExpect(jsonPath("$.date").value("2222-02-02"))
-                .andExpect(jsonPath("$.bookingid").value(16)).andExpect(jsonPath("$.price").value(3.0))
-                .andExpect(jsonPath("$.origin.city").value("la")).andExpect(jsonPath("$.origin.position").value(3)).andExpect(jsonPath("$.origin.cityId").value(14))
-                .andExpect(jsonPath("$.destination.city").value("ny")).andExpect(jsonPath("$.destination.cityId").value(15)).andExpect(jsonPath("$.destination.position").value(4));
+                .andExpect(jsonPath("$.bookingid").value(18)).andExpect(jsonPath("$.price").value(3.0))
+                .andExpect(jsonPath("$.origin.city").value("la")).andExpect(jsonPath("$.origin.position").value(3)).andExpect(jsonPath("$.origin.cityId").value(16))
+                .andExpect(jsonPath("$.destination.city").value("ny")).andExpect(jsonPath("$.destination.cityId").value(17)).andExpect(jsonPath("$.destination.position").value(4));
 
     }
 
@@ -153,12 +152,8 @@ public class TestBookingController {
         City temp = cs.createCity(ny);
         Booking record = bs.createBooking("1111-12-12", 9, "ny", "la");
 
-
-
         mockMvc.perform(delete("/booking/update/12")
         ).andDo(print()).andExpect(status().isNotFound());
-
-        //List<Booking> bookingUser = bs.findCurrentBookingByUId(1);
 
     }
 
@@ -169,16 +164,15 @@ public class TestBookingController {
         registerBody.put("date","2222-02-02");
         registerBody.put("origin","la");
         registerBody.put("destination","ny");
-        //User first = us.createUser("@", "pass", 1, 2, "a", "b", 123, true, 321);
         City la = new City("la",3);
         City holder = cs.createCity(la);
         City ny = new City("ny", 4);
         City temp = cs.createCity(ny);
-        //Booking record = bs.createBooking("1111-12-12", 1, "ny", "la");
 
-        mockMvc.perform(get("/booking/price").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(registerBody))
-                ).andDo(print()).andExpect(status().isAccepted()).andExpect(jsonPath("$.[0].date").value("1111-12-12"));
-
+        MvcResult content = mockMvc.perform(post("/booking/price").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(registerBody))
+                ).andDo(print()).andExpect(status().isAccepted()).andReturn();
+        String result = content.getResponse().getContentAsString();
+        assertEquals("3.0",result);
     }
 
 }

@@ -234,7 +234,7 @@ public class BookingService {
         }
     }
 
-    public double searchPrice(String origin, String destination, String date){
+    public double searchPrice(String date, String origin, String destination){
         if(canBook(origin, destination, date)){
             return (double)getPrice(origin, destination);
         }else {

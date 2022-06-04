@@ -25,8 +25,10 @@ public class UserService {
 
     public User createUser(String email, String password, int points, int role, String firstName, String lastName, int ccn, boolean sick, int ppn) {
         User u = new User(email, password, points, role, firstName, lastName, ccn, sick, ppn);
-
-        return ur.save(u);
+        User l = ur.findByEmail(email);
+        if(l == null) {
+            return ur.save(u);
+        }else{return null;}
     }
 
     public User getUserByEmailAndPassword(String email, String password) {
@@ -37,7 +39,10 @@ public class UserService {
 
     public User updateUser(int userid, int ccn, String email, String firstname, String lastname, String password, int points, int ppn, int role, boolean sick) {
         User u = new User(userid, ccn, email, firstname, lastname, password, points, ppn, role, sick);
-        return ur.saveAndFlush(u);
+        User l = ur.findByEmail(email);
+        if(l == null ) {
+            return ur.saveAndFlush(u);
+        }else if(l.getUserId() == userid){return ur.saveAndFlush(u);}else{return null;}
     }
 
 //    public User findCurrentUserByEmail(String email) {

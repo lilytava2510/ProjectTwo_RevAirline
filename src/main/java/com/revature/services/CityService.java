@@ -21,7 +21,15 @@ public class CityService {
     }
     public City createCity(City c) {
 
-        return cr.save(c);
+        City temp =  findCurrentCityByName(c.getCity());
+        City hold = cr.findByPosition(c.getPosition());
+
+        if(temp != null || hold != null){
+            return null;
+        }else{
+            return cr.save(c);
+        }
+
     }
 
     public City findCurrentCityById(int id) {
