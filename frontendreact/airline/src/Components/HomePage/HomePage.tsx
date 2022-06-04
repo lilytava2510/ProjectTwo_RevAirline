@@ -29,7 +29,7 @@ import React, {useState} from 'react';
  
              
          }
-         const handleSelect = (event:React.ChangeEvent<HTMLOptionElement>) =>{
+         const handleSelect = (event:React.ChangeEvent<HTMLSelectElement>) =>{
             if(event.target.id === "to"){
                 console.log(event.target.value);
                 setDestination(event.target.value);
@@ -71,15 +71,15 @@ import React, {useState} from 'react';
                  </div>
                  <div className="input-div">
                      <h4 className="input-h4">From:</h4>
-                     <select name="type"  >
+                     <select name="type" id="from" onChange={handleSelect}>
               {routes.cities?
               routes.cities.map((element:ICity) => (
-              <option id="from" key={element.cityId} value={element.city} onSelect={handleSelect}>{element.city}</option>
+              <option  key={element.cityId} value={element.city} >{element.city}</option>
               )): <option></option>}</select>
-              <select name="type"  >
+              <select name="type" id="to" onChange={handleSelect}>
               {routes.cities?
               routes.cities.map((element:ICity) => (
-              <option id="to" key={element.cityId} value={element.city} onSelect={handleSelect}>{element.city}</option>
+              <option  key={element.cityId} value={element.city} >{element.city}</option>
               )): <option></option>}</select>
                         
                      <input className="login-input" type="password" name="from" placeholder="from" onChange={handleInput}/>

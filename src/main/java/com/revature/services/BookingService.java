@@ -1,6 +1,7 @@
 package com.revature.services;
 
 import com.revature.models.City;
+import com.revature.models.Search;
 import com.revature.models.User;
 import com.revature.models.Booking;
 import com.revature.repository.UserRepo;
@@ -237,11 +238,15 @@ public class BookingService {
         }
     }
 
-    public double searchPrice(String date, String origin, String destination){
+    public Search searchPrice(String date, String origin, String destination){
+        City oc = (City)cs.findCurrentCityByName(origin);
+        City dc = (City)cs.findCurrentCityByName(destination);
+        Date ft = Date.valueOf(date);
         if(canBook(origin, destination, date)){
-            return (double)getPrice(origin, destination);
+            Search ticket = new Search(oc, dc,getPrice(origin, destination), ft);
+            return ticket;
         }else {
-            return 0.0;
+            return null;
         }
     }
 

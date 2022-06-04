@@ -53,10 +53,14 @@ export const SearchPage: React.FC = () => {
             }
     
            </table>
+           <table>
+             
            {available.current_booking?
           <BuyNow {...available.current_booking}/>
           :<></>
            }
+           
+           </table>
 
          
         </>
