@@ -35,7 +35,21 @@ export const createBook = createAsyncThunk(
     'book/create',
     async(book:book, thunkAPI) => {
         try{
+            
             const res = await axios.post('http://localhost:8000/booking/',book);
+            return res.data;
+              
+          } catch(e){
+            return thunkAPI.rejectWithValue('wrong');
+        }
+    }
+)
+
+export const pointsBook = createAsyncThunk(
+    'book/points',
+    async(book:book, thunkAPI) => {
+        try{
+            const res = await axios.post('http://localhost:8000/booking/points',book);
             return res.data;
               
           } catch(e){
@@ -94,6 +108,9 @@ export const BookSlice = createSlice({
     reducers: {
         toggleError : (state) => {
             state.error = !state.error;
+        },
+        clearBooking : (state) =>{
+            state.current_booking = undefined;
         }
     },
     extraReducers: (builder) => {
@@ -101,7 +118,6 @@ export const BookSlice = createSlice({
             state.loading = true;
         });
         builder.addCase(createBook.fulfilled, (state, action) => {
-            //The payload in this case, is the return from our asyncThunk from above
             state.current_booking = action.payload;
             state.error = false;
             state.loading = false;
@@ -120,11 +136,23 @@ export const BookSlice = createSlice({
         builder.addCase(userBooking.fulfilled, (state, action)=> {
             state.booking = action.payload;
         })
+        builder.addCase(pointsBook.pending, (state, action)=> {
+            state.loading = true;
+        });
+        builder.addCase(pointsBook.fulfilled, (state, action) => {
+            state.current_booking = action.payload;
+            state.error = false;
+            state.loading = false;
+        });
+        builder.addCase(pointsBook.rejected, (state, action)=> {
+            state.error = true;
+            state.loading = false;
+        });
     }
 })
     
 
 
 
- export const {toggleError} = BookSlice.actions;
+ export const {toggleError, clearBooking} = BookSlice.actions;
 export default BookSlice.reducer;

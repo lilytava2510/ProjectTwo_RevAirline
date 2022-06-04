@@ -3,12 +3,13 @@ import React, {useState} from 'react';
  import { IBooking } from '../../Interface/IBooking';
  import {AppDispatch , RootState} from  '../../Store';
  import { useDispatch, useSelector } from 'react-redux';
- import { searchBooking } from '../../Slices/BookSlice';
+ import { clearBooking, searchBooking } from '../../Slices/BookSlice';
  export const HomePage: React.FC = () =>{
-     
-     const [destination, setDestination] = useState<any>("");
-     const [origin, setOrigin] = useState<any>("");
-     const [date, setDate] = useState<any>("");
+    
+    const routes = useSelector((state:RootState)=>state.city);
+    const [destination, setDestination] = useState<any>("");
+    const [origin, setOrigin] = useState<any>("");
+    const [date, setDate] = useState<any>("");
    
       const user = useSelector((state:RootState) =>state.user)
     const dispatch: AppDispatch = useDispatch();
@@ -37,7 +38,7 @@ import React, {useState} from 'react';
              destination
              
          };
- 
+            dispatch(clearBooking());
       dispatch(searchBooking(tis));
      }
 

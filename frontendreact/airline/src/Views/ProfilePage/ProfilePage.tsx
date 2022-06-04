@@ -69,7 +69,7 @@ return(
             )
             }):
             <tr>
-                <td>no posts to display</td>
+                <td>no tickets to display</td>
             </tr>}
            </table>
 
