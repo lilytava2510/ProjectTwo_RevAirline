@@ -2,6 +2,7 @@ import React from "react";
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 import {IBooking} from "../Interface/IBooking";
+import { ICity } from "../Interface/ICity";
 
 interface BookSliceState {
     loading: boolean,
@@ -24,7 +25,12 @@ type book = {
    
     userId: any
 }
-
+type tansfer = {
+    date:any,
+    destination: ICity,
+    origin: ICity,
+    price: number
+}
 type ing = { 
     date: any,
     destination: any,
@@ -66,10 +72,7 @@ export const searchBooking = createAsyncThunk(
               //axios.defaults.withCredentials = true;
             const res = await axios.post(`http://localhost:8000/booking/price`, tis);
   
-            return {date: tis.date,
-                origin:tis.origin,
-                destination: tis.destination,
-                    price: res.data};
+            return res.data;
         } catch (e){
             console.log(e);
         }
@@ -137,6 +140,7 @@ export const BookSlice = createSlice({
         });
         builder.addCase(searchBooking.fulfilled, (state, action) => {
             state.loading =false;
+            console.log(action.payload)
             state.current_booking= action.payload;
         });
         builder.addCase(userBooking.fulfilled, (state, action)=> {

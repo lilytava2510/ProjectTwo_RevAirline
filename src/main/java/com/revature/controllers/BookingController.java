@@ -3,6 +3,7 @@ package com.revature.controllers;
 
 import com.revature.models.Booking;
 import com.revature.models.City;
+import com.revature.models.Search;
 import com.revature.models.User;
 import com.revature.services.BookingService;
 import com.revature.services.UserService;
@@ -108,9 +109,9 @@ public class BookingController {
 
 
     @PostMapping("/booking/price")
-    public ResponseEntity<Double> handlePrice(@RequestBody LinkedHashMap<String, String> u) {
+    public ResponseEntity<Search> handlePrice(@RequestBody LinkedHashMap<String, String> u) {
         System.out.println(u.entrySet());
-        return new ResponseEntity<>((Double)bs.searchPrice(u.get("date"), u.get("origin"), u.get("destination")), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(bs.searchPrice(u.get("date"), u.get("origin"), u.get("destination")), HttpStatus.ACCEPTED);
 
     }
 

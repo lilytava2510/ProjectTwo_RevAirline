@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../Store";
@@ -18,19 +17,16 @@ export const SearchPage: React.FC = () => {
   
     const available = useSelector((state:RootState)=>state.book);
     const city = useSelector((state:RootState)=>state.city);
-    const user = useSelector((state:RootState)=>state.user);
+    const userState = useSelector ((state:RootState) => state.user);
     const dispatch:AppDispatch = useDispatch();
-    //const navigator = useNavigate();
+//const navigator = useNavigate();
     useEffect(()=> {
       if(!city.cities){
          dispatch(getCity());
-    //  } else if(!user. && userState.user){
-    //   navigator('/info');
-  }
-     
-   },[city.cities,user, available])
-    
-   return(
+     }
+   },[city.cities, available, userState])
+   console.log(userState.user?.role);
+    return(
         <>
           <Navbar/>
           <h1>Welcome to Revature Airline</h1>
@@ -60,18 +56,14 @@ export const SearchPage: React.FC = () => {
            </table>
            <table>
              
-             {available.current_booking?
-            <BuyNow {...available.current_booking}/>
-            :<></>
-             }
-             </table>
-            <div>
-            {(user.user?.role == 3)?
-                   <CityCreate/>
-                : <></> 
-                }
-            </div>
+           {available.current_booking?
+          <BuyNow {...available.current_booking}/>
+          :<></>
+           }
            
-          </>
-      )
-          }
+           </table>
+
+         
+        </>
+    )
+        }

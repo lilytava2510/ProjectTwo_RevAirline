@@ -33,7 +33,7 @@ export const Navbar: React.FC = () => {
                     <Link to={`/user/${user?.userId}`} className="nav-link">Profile</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to={"/search"} className="nav-link">Home</Link>
+                    <Link to={"/search"} className="nav-link">Search</Link>
                 </li>
                 <li className="nav-item">
                     <Link to={"/bookingPage"} className="nav-link">Book</Link>
