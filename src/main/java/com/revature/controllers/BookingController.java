@@ -109,7 +109,7 @@ public class BookingController {
 
     @PostMapping("/booking/price")
     public ResponseEntity<Double> handlePrice(@RequestBody LinkedHashMap<String, String> u) {
-
+        System.out.println(u.entrySet());
         return new ResponseEntity<>((Double)bs.searchPrice(u.get("date"), u.get("origin"), u.get("destination")), HttpStatus.ACCEPTED);
 
     }

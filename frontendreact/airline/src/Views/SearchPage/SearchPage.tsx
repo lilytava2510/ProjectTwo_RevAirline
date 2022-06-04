@@ -11,6 +11,7 @@ import { createCity } from "../../Slices/CitySlice";
 import { CreateCity } from "../../Components/CityCreate/City";
 import { CityCreate } from "../../Components/CityCreate/CityCreate";
 import { ICity } from "../../Interface/ICity";
+import { BuyNow } from "../../Components/Booking/BuyNow";
 
 export const SearchPage: React.FC = () => {
     
@@ -23,7 +24,7 @@ export const SearchPage: React.FC = () => {
       if(!city.cities){
          dispatch(getCity());
      }
-   },[city.cities])
+   },[city.cities, available])
     return(
         <>
           <Navbar/>
@@ -52,10 +53,12 @@ export const SearchPage: React.FC = () => {
             }
     
            </table>
-          
+           {available.current_booking?
+          <BuyNow {...available.current_booking}/>
+          :<></>
+           }
 
-         {/* // <Booking/>
-          //<BookingPage/> */}
+         
         </>
     )
         }

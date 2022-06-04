@@ -62,10 +62,14 @@ export const searchBooking = createAsyncThunk(
     "booking/get",
     async (tis:ing, thunkAPI) => {
         try{
+            console.log(tis)
               //axios.defaults.withCredentials = true;
-            const res = await axios.post(`http://localhost:8000/booking/get`, tis);
+            const res = await axios.post(`http://localhost:8000/booking/price`, tis);
   
-            return res.data;
+            return {date: tis.date,
+                origin:tis.origin,
+                destination: tis.destination,
+                    price: res.data};
         } catch (e){
             console.log(e);
         }
@@ -112,6 +116,8 @@ export const BookSlice = createSlice({
         clearBooking : (state) =>{
             state.current_booking = undefined;
         }
+        
+    
     },
     extraReducers: (builder) => {
         builder.addCase(createBook.pending, (state, action)=> {

@@ -190,9 +190,12 @@ public class BookingService {
 
     public int getPrice(String origin, String destination){
         City from = (City) cs.findCurrentCityByName(origin);
+        System.out.println(from.getPosition());
         City to = (City) cs.findCurrentCityByName(destination);
+        System.out.println(to.getPosition());
         int price = 0;
         price = Math.abs(from.getPosition() - to.getPosition()) * 3;
+        System.out.println(price);
         return price;
     }
 

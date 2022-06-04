@@ -6,7 +6,8 @@ interface CitySliceState {
     loading: boolean,
     error: boolean,
     city?: ICity,
-    cities?: ICity[]
+    cities?: ICity[],
+    options?:ICity[]
 }
 
 const initialCityState: CitySliceState = {
