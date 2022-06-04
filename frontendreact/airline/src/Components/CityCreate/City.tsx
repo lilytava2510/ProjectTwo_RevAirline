@@ -7,11 +7,13 @@ import {useDispatch, useSelector} from "react-redux";
 import { RootState,AppDispatch } from '../../Store';
 //import { IUser } from '../../Interface/IUser';
 import { IBooking } from '../../Interface/IBooking';
-
-export const BookingPage:React.FC<IBooking> = (book:IBooking) => {
+import { ICity } from '../../Interface/ICity';
+import { CityCreate } from './CityCreate';
+export const CreateCity:React.FC<ICity> = (pla:ICity) => {
 
     const user = useSelector((state:RootState) => state.user);
-    
+    const city = useSelector((state:RootState) => state.city);
+
 
     //  const dispatch:AppDispatch = useDispatch();
 
@@ -24,16 +26,13 @@ export const BookingPage:React.FC<IBooking> = (book:IBooking) => {
     //const [sick, setSick] = useState<any>();
  //const sick = true;
  //const role = false;
- const userId = user.user?.userId;
- console.log(book.bookingid);
+ //const userId = user.user?.userId;
+ console.log(city.city?.cityId);
     return(
             <tr>
-                <td>{book.bookingid}</td>
-                <td>{book.date}</td>
-                <td>{book.origin.city}</td>
-                <td>{book.destination.city}</td>
-                <td>{book.price}</td>
-                <td>{userId}</td>
+                <td>{pla.position}</td>
+                <td>{pla.cityId}</td>
+                <td>{pla.city}</td>
             </tr>
     )
 }

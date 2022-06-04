@@ -70,7 +70,9 @@ return(
             }):
             <tr>
                 <td>no posts to display</td>
-            </tr>}
+            </tr>
+            }
+    
            </table>
 
     </>      
