@@ -1,5 +1,5 @@
 //import { setDefaultResultOrder } from 'dns';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 //import "./LoginForm.css";
 //import { loginUser,toggleError, createUser } from '../../Slices/UserSlice';
 import {useDispatch, useSelector} from "react-redux";
@@ -9,12 +9,12 @@ import { RootState,AppDispatch } from '../../Store';
 import { IBooking } from '../../Interface/IBooking';
 import { ICity } from '../../Interface/ICity';
 import { CityCreate } from './CityCreate';
+import { createCity } from '../../Slices/CitySlice';
 export const CreateCity:React.FC<ICity> = (pla:ICity) => {
 
     const user = useSelector((state:RootState) => state.user);
     const city = useSelector((state:RootState) => state.city);
-
-
+              
     //  const dispatch:AppDispatch = useDispatch();
 
  

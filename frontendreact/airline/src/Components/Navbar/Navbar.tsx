@@ -5,7 +5,8 @@ import {Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../Slices/UserSlice';
 import { AppDispatch } from '../../Store';
-
+import { BookCreate } from '../Booking/BookingPage';
+import { SearchPage } from '../../Views/SearchPage/SearchPage';
 
 //import defaultImage from '../../deafultpic.jpg';
 
@@ -32,7 +33,7 @@ export const Navbar: React.FC = () => {
                     <Link to={`/user/${user?.userId}`} className="nav-link">Profile</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to={"/home"} className="nav-link">Home</Link>
+                    <Link to={"/search"} className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
                     <Link to={"/bookingPage"} className="nav-link">Book</Link>

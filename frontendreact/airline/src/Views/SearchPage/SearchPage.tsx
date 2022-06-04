@@ -18,14 +18,19 @@ export const SearchPage: React.FC = () => {
   
     const available = useSelector((state:RootState)=>state.book);
     const city = useSelector((state:RootState)=>state.city);
+    const user = useSelector((state:RootState)=>state.user);
     const dispatch:AppDispatch = useDispatch();
-//const navigator = useNavigate();
+    //const navigator = useNavigate();
     useEffect(()=> {
       if(!city.cities){
          dispatch(getCity());
-     }
-   },[city.cities, available])
-    return(
+    //  } else if(!user. && userState.user){
+    //   navigator('/info');
+  }
+     
+   },[city.cities,user, available])
+    
+   return(
         <>
           <Navbar/>
           <h1>Welcome to Revature Airline</h1>
@@ -53,12 +58,20 @@ export const SearchPage: React.FC = () => {
             }
     
            </table>
-           {available.current_booking?
-          <BuyNow {...available.current_booking}/>
-          :<></>
-           }
-
-         
-        </>
-    )
-        }
+           <table>
+             
+             {available.current_booking?
+            <BuyNow {...available.current_booking}/>
+            :<></>
+             }
+             </table>
+            <div>
+            {(user.user?.role == 3)?
+                   <CityCreate/>
+                : <></> 
+                }
+            </div>
+           
+          </>
+      )
+          }
