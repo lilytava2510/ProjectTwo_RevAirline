@@ -7,24 +7,27 @@ import { BookSlice, createBook } from '../../Slices/BookSlice';
 import { RootState,AppDispatch } from '../../Store';
 import { IUser } from '../../Interface/IUser';
 import { IBooking } from '../../Interface/IBooking';
+import { ICity } from '../../Interface/ICity';
+import { createCity } from '../../Slices/CitySlice';
 
-export const BookCreate: React.FC = () => {
+export const CityCreate: React.FC = () => {
 
 
      
      const user = useSelector((state:RootState) => state.user);
      const book = useSelector((state:RootState) => state.book);
+     const cities = useSelector((state:RootState) => state.city);
+
 
      const dispatch:AppDispatch = useDispatch();
 
- 
-    const [date, setDate] = useState<any>();
-    const [price, setPrice] = useState<any>();
-    const [destination, setDestination] = useState<any>();
-    const [origin, setOrigin] = useState<any>();
+     
+    const [city, setCity] = useState<any>();
+    const [position, setPosition] = useState<any>();
+   
  
     //const [sick, setSick] = useState<any>();
- const sick = true;
+ //const sick = true;
  //const role = false;
  const userId = user.user?.userId;
     //const [privilege, setPrivilege] = useState<boolean>(user.user?.privilege?);
@@ -32,28 +35,24 @@ export const BookCreate: React.FC = () => {
  
 
     const handleInput = (event:React.ChangeEvent<HTMLInputElement>) => {
-        if(event.target.name === "date"){
-            setDate(event.target.value);
+        if(event.target.name === "city"){
+            setCity(event.target.value);
         }
        
-        else if(event.target.name === "destination"){
-            setDestination(event.target.value);  
+        else if(event.target.name === "position"){
+            setPosition(event.target.value);  
         }  
-    else if(event.target.name === "origin"){
-        setOrigin(event.target.value);
-    } 
+  
   
 }
 
  
         
     const handleUpdate = (event:React.MouseEvent<HTMLButtonElement>) => {
-        let book = {
-            date,
-            //price,
-            origin,
-            destination,
-            userId
+        let place = {
+            city,
+            position
+         
             
            
            
@@ -62,7 +61,7 @@ export const BookCreate: React.FC = () => {
         };
 
 
-      dispatch(createBook(book));
+      dispatch(createCity(place));
         
         
     }
@@ -70,33 +69,24 @@ export const BookCreate: React.FC = () => {
         <div className="login">
             <div className="text-container">
                 <h1 className="login-header"></h1>
-                <h2 className="login-header">Book Your Flight Below.</h2>
+                <h2 className="login-header">City.</h2>
             </div>
             <form className="login-form">
-            <div className="input-div">
-                  <h4 className="input-h4">Enter Date:</h4>
-                    <input autoComplete="off" className="login-input" type="text" name="date" placeholder="yyyy-mm-dd" onChange={handleInput}/>
-                </div>
+            
             {/*<div className="input-div">
                   <h4 className="input-h4">Price:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="lastname" placeholder="lastname" onChange={handleInput}/>
                 </div>*/}
                  <div className="input-div">
-                  <h4 className="input-h4">Enter Origin:</h4>
-                    <input autoComplete="off" className="login-input" type="text" name="origin" placeholder="origin" onChange={handleInput}/>
+                  <h4 className="input-h4">Enter :</h4>
+                    <input autoComplete="off" className="login-input" type="text" name="city" placeholder="city" onChange={handleInput}/>
                 </div>
                 <div className="input-div">
-                  <h4 className="input-h4">Enter Destination:</h4>
-                    <input autoComplete="off" className="login-input" type="text" name="destination" placeholder="destination" onChange={handleInput}/>
-                </div>
-               
-                <div>
-                <label>
-          <input name="rememberMe" checked={true} onChange={handleInput} type="checkbox" /> Tested
-                 </label>
+                  <h4 className="input-h4">Enter :</h4>
+                    <input autoComplete="off" className="login-input" type="text" name="position" placeholder="position" onChange={handleInput}/>
                 </div>
             </form>
-                <button className="login-button" onClick={handleUpdate}>Create Account</button>
+                <button className="login-button" onClick={handleUpdate}>Create City</button>
         </div>
     )
 }
