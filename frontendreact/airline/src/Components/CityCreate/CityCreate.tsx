@@ -8,7 +8,7 @@ import { RootState,AppDispatch } from '../../Store';
 import { IUser } from '../../Interface/IUser';
 import { IBooking } from '../../Interface/IBooking';
 import { ICity } from '../../Interface/ICity';
-import { createCity } from '../../Slices/CitySlice';
+import { clearCities, createCity } from '../../Slices/CitySlice';
 
 export const CityCreate: React.FC = () => {
 
@@ -62,7 +62,6 @@ export const CityCreate: React.FC = () => {
 
 
       dispatch(createCity(place));
-        
         
     }
     return(
