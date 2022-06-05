@@ -32,9 +32,9 @@ public class CityService {
 
     }
 
-    public City findCurrentCityById(int id) {
-        return cr.findById(id).get();
-    }
+//    public City findCurrentCityById(int id) {
+//        return cr.findById(id).get();
+//    }
 
     public City findCurrentCityByName(String city) {
         return cr.findByCity(city);

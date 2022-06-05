@@ -4,3 +4,4 @@
 2022-06-05 01:09:29 WARN  LoggingUtil:50 - improper attempt at login on email: @
 2022-06-05 01:09:39 WARN  LoggingUtil:50 - improper attempt at login on email: @
 2022-06-05 10:06:20 WARN  LoggingUtil:50 - improper attempt at login on email: @
+2022-06-05 15:50:35 WARN  LoggingUtil:80 - improper attempt at login on email: @

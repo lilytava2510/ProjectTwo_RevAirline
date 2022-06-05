@@ -43,23 +43,23 @@ public class BookingController {
     }
 
 
-    @PutMapping("/booking/update")
-    public ResponseEntity<Object> handleUpdate(@RequestBody LinkedHashMap<String, String> u) {
-        double price = Double.parseDouble(u.get("price"));
+//    @PutMapping("/booking/update")
+//    public ResponseEntity<Object> handleUpdate(@RequestBody LinkedHashMap<String, String> u) {
+//        double price = Double.parseDouble(u.get("price"));
+//
+//
+//        Booking book = bs.updateBooking(Integer.parseInt(u.get("bookingid")), u.get("date"), price, Integer.parseInt(u.get("userId")), u.get("origin"), u.get("destination"));
+//
+//        return new ResponseEntity<>(book, HttpStatus.ACCEPTED);
+//    }
 
 
-        Booking book = bs.updateBooking(Integer.parseInt(u.get("bookingid")), u.get("date"), price, Integer.parseInt(u.get("userId")), u.get("origin"), u.get("destination"));
-
-        return new ResponseEntity<>(book, HttpStatus.ACCEPTED);
-    }
-
-
-    @DeleteMapping("/booking/delete/{id}")
-    public ResponseEntity<Object> handleDelete(@PathVariable("id") int id) {
-        bs.deleteBooking(id);
-
-        return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
-    }
+//    @DeleteMapping("/booking/delete/{id}")
+//    public ResponseEntity<Object> handleDelete(@PathVariable("id") int id) {
+//        bs.deleteBooking(id);
+//
+//        return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
+//    }
 
     //
 ////    @GetMapping("/user/get/{email}")

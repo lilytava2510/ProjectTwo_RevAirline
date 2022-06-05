@@ -59,57 +59,57 @@ public class BookingService {
         }
     }
 
-    public Booking updateBooking(int bookingid, String date, double price, int userid, String origin, String destination) {
+//    public Booking updateBooking(int bookingid, String date, double price, int userid, String origin, String destination) {
+//
+//
+//
+//
+//
+//
+//        User we = us.findCurrentUserById(userid);
+//
+//        // System.out.println(we);
+//
+//        City oc = (City)cs.findCurrentCityByName(origin);
+//        City dc = (City)cs.findCurrentCityByName(destination);
+//        Date ft =Date.valueOf(date);
+//
+//        Booking b = new Booking(bookingid, ft, price, we, oc, dc);
+//
+//
+//        return br.saveAndFlush(b);
+//    }
 
-
-
-
-
-
-        User we = us.findCurrentUserById(userid);
-
-        // System.out.println(we);
-
-        City oc = (City)cs.findCurrentCityByName(origin);
-        City dc = (City)cs.findCurrentCityByName(destination);
-        Date ft =Date.valueOf(date);
-
-        Booking b = new Booking(bookingid, ft, price, we, oc, dc);
-
-
-        return br.saveAndFlush(b);
-    }
-
-    public void deleteBooking(int bookingid){
-        Booking book = br.getById(bookingid);
-        User u = us.getUserByEmailAndPassword(book.getUser().getEmail(), book.getUser().getPassword());
-        List<Booking> ul = u.getBookingList();
-        ul.remove(book);
-        City originCity = cs.findCurrentCityById(book.getOrigin().getCityId());
-        List<Booking> ol = originCity.getDepartures();
-        ol.remove(book);
-        originCity.setDepartures(ol);
-        City destinationCity = cs.findCurrentCityById(book.getDestination().getCityId());
-        List<Booking> dl = destinationCity.getArrivals();
-        dl.remove(book);
-        destinationCity.setArrivals(dl);
-        for(Booking b : ul){
-            if(b.getOrigin().getCityId() == originCity.getCityId()){
-                b.setOrigin(originCity);}
-            else if(b.getDestination().getCityId() == originCity.getCityId()){
-                b.setDestination(originCity);}
-            if(b.getOrigin().getCityId() == destinationCity.getCityId()){
-                b.setOrigin(destinationCity);}
-            else if (b.getDestination().getCityId() == destinationCity.getCityId()){
-                b.setDestination(destinationCity);}
-
-        }
-        u.setBookingList(ul);
-
-
-
-
-    }
+//    public void deleteBooking(int bookingid){
+//        Booking book = br.getById(bookingid);
+//        User u = us.getUserByEmailAndPassword(book.getUser().getEmail(), book.getUser().getPassword());
+//        List<Booking> ul = u.getBookingList();
+//        ul.remove(book);
+//        City originCity = cs.findCurrentCityById(book.getOrigin().getCityId());
+//        List<Booking> ol = originCity.getDepartures();
+//        ol.remove(book);
+//        originCity.setDepartures(ol);
+//        City destinationCity = cs.findCurrentCityById(book.getDestination().getCityId());
+//        List<Booking> dl = destinationCity.getArrivals();
+//        dl.remove(book);
+//        destinationCity.setArrivals(dl);
+//        for(Booking b : ul){
+//            if(b.getOrigin().getCityId() == originCity.getCityId()){
+//                b.setOrigin(originCity);}
+//            else if(b.getDestination().getCityId() == originCity.getCityId()){
+//                b.setDestination(originCity);}
+//            if(b.getOrigin().getCityId() == destinationCity.getCityId()){
+//                b.setOrigin(destinationCity);}
+//            else if (b.getDestination().getCityId() == destinationCity.getCityId()){
+//                b.setDestination(destinationCity);}
+//
+//        }
+//        u.setBookingList(ul);
+//
+//
+//
+//
+//    }
 
     //    public User getUserByEmailAndPassword(String email, String password) {
 //
@@ -152,48 +152,48 @@ public class BookingService {
         }
     }
     // Helper Functions for Searching and Filtering
-    public List<Booking> findCurrentBookingByDate(String date) {
-        Date ft =Date.valueOf(date);
-        List<Booking> b = br.findByDate(ft);
-        return b;
+//    public List<Booking> findCurrentBookingByDate(String date) {
+//        Date ft =Date.valueOf(date);
+//        List<Booking> b = br.findByDate(ft);
+//        return b;
 
-    }
+  //  }
 
-    public List<Booking> findCurrentBookingByOrigin(String origin) {
-        City from = (City) cs.findCurrentCityByName(origin);
-        List<Booking> b = br.findByOriginCity(from.getCityId());
+//    public List<Booking> findCurrentBookingByOrigin(String origin) {
+//        City from = (City) cs.findCurrentCityByName(origin);
+//        List<Booking> b = br.findByOriginCity(from.getCityId());
+//
+//
+//        return b;
+//
+//    }
 
-
-        return b;
-
-    }
-
-    public List<Booking> findCurrentBookingByDestination(String destination) {
-        City to = (City) cs.findCurrentCityByName(destination);
-        List<Booking> b = br.findByDestinationCity(to.getCityId());
-
-
-        return b;
-
-    }
-
-
-    public List<Booking> findCurrentBookingByDestination(String date, String origin, String destination) {
-        City from = (City) cs.findCurrentCityByName(origin);
-        Date ft =Date.valueOf(date);
-        City to = (City) cs.findCurrentCityByName(destination);
-        List<Booking> b = br.findByDateAndOriginAndDestination(ft, from.getCityId(), to.getCityId());
+//    public List<Booking> findCurrentBookingByDestination(String destination) {
+//        City to = (City) cs.findCurrentCityByName(destination);
+//        List<Booking> b = br.findByDestinationCity(to.getCityId());
+//
+//
+//        return b;
+//
+//    }
 
 
-        return b;
-
-    }
+//    public List<Booking> findCurrentBookingByDestination(String date, String origin, String destination) {
+//        City from = (City) cs.findCurrentCityByName(origin);
+//        Date ft =Date.valueOf(date);
+//        City to = (City) cs.findCurrentCityByName(destination);
+//        List<Booking> b = br.findByDateAndOriginAndDestination(ft, from.getCityId(), to.getCityId());
+//
+//
+//        return b;
+//
+//    }
 
     public int getPrice(String origin, String destination){
         City from = (City) cs.findCurrentCityByName(origin);
-        System.out.println(from.getPosition());
+        //System.out.println(from.getPosition());
         City to = (City) cs.findCurrentCityByName(destination);
-        System.out.println(to.getPosition());
+        //System.out.println(to.getPosition());
         int price = 0;
         price = Math.abs(from.getPosition() - to.getPosition()) * 3;
         System.out.println(price);
