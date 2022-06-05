@@ -124,20 +124,20 @@ public class TestBookingController {
         City holder = cs.createCity(la);
         City ny = new City("ny", 4);
         City temp = cs.createCity(ny);
-        Booking record = bs.createBooking("1111-12-12", 15, "ny", "la");
+        Booking record = bs.createBooking("1111-12-12", 32, "ny", "la");
         LinkedHashMap<String,String> registerBody = new LinkedHashMap<>();
         registerBody.put("price","3");
-        registerBody.put("bookingid","18");
+        registerBody.put("bookingid","35");
         registerBody.put("date","2222-02-02");
-        registerBody.put("userId","15");
+        registerBody.put("userId","32");
         registerBody.put("origin","la");
         registerBody.put("destination","ny");
 
         mockMvc.perform(put("/booking/update").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(registerBody))
                 ).andDo(print()).andExpect(status().isAccepted()).andExpect(jsonPath("$.date").value("2222-02-02"))
-                .andExpect(jsonPath("$.bookingid").value(18)).andExpect(jsonPath("$.price").value(3.0))
-                .andExpect(jsonPath("$.origin.city").value("la")).andExpect(jsonPath("$.origin.position").value(3)).andExpect(jsonPath("$.origin.cityId").value(16))
-                .andExpect(jsonPath("$.destination.city").value("ny")).andExpect(jsonPath("$.destination.cityId").value(17)).andExpect(jsonPath("$.destination.position").value(4));
+                .andExpect(jsonPath("$.bookingid").value(35)).andExpect(jsonPath("$.price").value(3.0))
+                .andExpect(jsonPath("$.origin.city").value("la")).andExpect(jsonPath("$.origin.position").value(3)).andExpect(jsonPath("$.origin.cityId").value(33))
+                .andExpect(jsonPath("$.destination.city").value("ny")).andExpect(jsonPath("$.destination.cityId").value(34)).andExpect(jsonPath("$.destination.position").value(4));
 
     }
 
@@ -150,7 +150,7 @@ public class TestBookingController {
         City holder = cs.createCity(la);
         City ny = new City("ny", 4);
         City temp = cs.createCity(ny);
-        Booking record = bs.createBooking("1111-12-12", 9, "ny", "la");
+        Booking record = bs.createBooking("1111-12-12", 22, "ny", "la");
 
         mockMvc.perform(delete("/booking/update/12")
         ).andDo(print()).andExpect(status().isNotFound());
@@ -169,10 +169,72 @@ public class TestBookingController {
         City ny = new City("ny", 4);
         City temp = cs.createCity(ny);
 
-        MvcResult content = mockMvc.perform(post("/booking/price").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(registerBody))
-                ).andDo(print()).andExpect(status().isAccepted()).andReturn();
-        String result = content.getResponse().getContentAsString();
-        assertEquals("3.0",result);
+         mockMvc.perform(post("/booking/price").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(registerBody))
+                ).andDo(print()).andExpect(status().isAccepted()).andExpect(jsonPath("$.date").value("2222-02-02"))
+                .andExpect(jsonPath("$.price").value(3.0))
+                .andExpect(jsonPath("$.origin.city").value("la")).andExpect(jsonPath("$.origin.position").value(3)).andExpect(jsonPath("$.origin.cityId").value(30))
+                .andExpect(jsonPath("$.destination.city").value("ny")).andExpect(jsonPath("$.destination.cityId").value(31)).andExpect(jsonPath("$.destination.position").value(4));
+
     }
+
+    @Test
+    @Transactional
+    public void failedGetPrice() throws Exception {
+        LinkedHashMap<String,String> registerBody = new LinkedHashMap<>();
+        registerBody.put("date","1111-12-12");
+        registerBody.put("origin","ny");
+        registerBody.put("destination","la");
+        User registeredUser = new User("@", "pass", 1000, 2, "a", "b", 101, true, 111);
+        ur.save(registeredUser);
+        City la = new City("la",3);
+        City holder = cs.createCity(la);
+        City ny = new City("ny", 4);
+        City temp = cs.createCity(ny);
+        Booking record = bs.createBooking("1111-12-12", 9, "ny", "la");
+        record = bs.createBooking("1111-12-12", 9, "ny", "la");
+        record = bs.createBooking("1111-12-12", 9, "ny", "la");
+        record = bs.createBooking("1111-12-12", 9, "ny", "la");
+        record = bs.createBooking("1111-12-12", 9, "ny", "la");
+        record = bs.createBooking("1111-12-12", 9, "ny", "la");
+        record = bs.createBooking("1111-12-12", 9, "ny", "la");
+        record = bs.createBooking("1111-12-12", 9, "ny", "la");
+        record = bs.createBooking("1111-12-12", 9, "ny", "la");
+        record = bs.createBooking("1111-12-12", 9, "ny", "la");
+
+        MvcResult content = mockMvc.perform(post("/booking/price").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(registerBody))
+        ).andDo(print()).andExpect(status().isAccepted()).andReturn();
+        String result = content.getResponse().getContentAsString();
+        assertEquals("",result);
+    }
+
+    @Test
+    @Transactional
+    public void successPointsBooking() throws Exception{
+
+        User registeredUser = new User("@", "pass", 1000, 2, "a", "b", 101, true, 111);
+        ur.save(registeredUser);
+
+        City la = new City("la", 20);
+        cr.save(la);
+
+        City ny = new City("ny",30);
+        cr.save(ny);
+
+        LinkedHashMap<String,String> bookingBody = new LinkedHashMap<>();
+        bookingBody.put("date","1111-12-12");
+        bookingBody.put("userId","26");
+        bookingBody.put("origin","ny");
+        bookingBody.put("destination","la");
+
+        mockMvc.perform(post("/booking/points").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(bookingBody))
+                ).andDo(print()).andExpect(status().isCreated()).andExpect(jsonPath("$.date").value("1111-12-12"))
+                .andExpect(jsonPath("$.bookingid").value(29)).andExpect(jsonPath("$.price").value(0.0))
+                .andExpect(jsonPath("$.origin.city").value("ny")).andExpect(jsonPath("$.origin.position").value(30)).andExpect(jsonPath("$.origin.cityId").value(28))
+                .andExpect(jsonPath("$.destination.city").value("la")).andExpect(jsonPath("$.destination.cityId").value(27)).andExpect(jsonPath("$.destination.position").value(20));
+            registeredUser = ur.findByEmail("@");
+            assertEquals(970, registeredUser.getPoints());
+    }
+
+
 
 }

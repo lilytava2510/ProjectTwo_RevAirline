@@ -53,8 +53,8 @@ public class UserService {
         return ur.findById(id).get();
     }
 
-    public List<User> getAllUsers(){
-        return ur.findAll();
-    }
+   // public List<User> getAllUsers(){
+     //   return ur.findAll();
+    //}
 }
 

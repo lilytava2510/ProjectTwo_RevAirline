@@ -73,18 +73,18 @@ public class BookingController {
 
     }
 
-    @PostMapping("/booking/filter")
-    public ResponseEntity<Object> handleSearch(@RequestBody LinkedHashMap<String, String> u) {
-
-        List<Booking> book = bs.findCurrentBookingByDestination(u.get("date"), u.get("origin"), u.get("destination"));
-
-        if (book != null) {
-            return new ResponseEntity<>(book, HttpStatus.ACCEPTED);
-        } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
-        }
-
-    }
+//    @PostMapping("/booking/filter")
+//    public ResponseEntity<Object> handleSearch(@RequestBody LinkedHashMap<String, String> u) {
+//
+//        List<Booking> book = bs.findCurrentBookingByDestination(u.get("date"), u.get("origin"), u.get("destination"));
+//
+//        if (book != null) {
+//            return new ResponseEntity<>(book, HttpStatus.ACCEPTED);
+//        } else {
+//            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+//        }
+//
+//    }
 
     @PostMapping("/booking/points")
     public ResponseEntity<Object> handleCreatePoints(@RequestBody LinkedHashMap<String, String> u) {

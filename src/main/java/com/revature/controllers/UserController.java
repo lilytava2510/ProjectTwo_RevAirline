@@ -81,11 +81,11 @@ public class UserController {
         return new ResponseEntity<>(us.findCurrentUserById(id), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/user/get")
-    public ResponseEntity<List> handleGetAllUsers() {
-        return new ResponseEntity<>(us.getAllUsers(), HttpStatus.ACCEPTED);
-
-    }
+//    @GetMapping("/user/get")
+//    public ResponseEntity<List> handleGetAllUsers() {
+//        return new ResponseEntity<>(us.getAllUsers(), HttpStatus.ACCEPTED);
+//
+//    }
 }
 
 
