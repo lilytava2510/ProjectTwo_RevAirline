@@ -1,6 +1,9 @@
 html, body, #root {
   height: 100%;
   width: 100%;
+  background-image: url('./background-airline.jpg');
+  background-position: center;
+  background-size: cover;
 }
 
 * {

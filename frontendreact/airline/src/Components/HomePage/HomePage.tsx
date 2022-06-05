@@ -4,6 +4,9 @@ import React, {useState} from 'react';
  import {AppDispatch , RootState} from  '../../Store';
  import { useDispatch, useSelector } from 'react-redux';
  import { searchBooking } from '../../Slices/BookSlice';
+
+ import "./HomePage.css";
+
  export const HomePage: React.FC = () =>{
      
      const [destination, setDestination] = useState<any>("");

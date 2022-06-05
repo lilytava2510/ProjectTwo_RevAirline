@@ -1,12 +1,13 @@
+import { ICity } from "./ICity";
 import { IUser} from "./IUser";
 
 
 export interface IBooking {
-    bookingId?: number,
-    date: String,
-    price: number,
-    destination: number,
-    origin: number,
+    bookingid?: number,
+    date: string,
+    price?: number,
+    destination: ICity,
+    origin: ICity,
     userId?: number
 
 }

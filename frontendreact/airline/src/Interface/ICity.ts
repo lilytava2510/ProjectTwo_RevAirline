@@ -2,6 +2,7 @@ import { IBooking } from "./IBooking";
 
 
 export interface ICity {
-    name: string,
-    position: number
+    cityId?: number,
+    city: string,
+    position?: number
 }

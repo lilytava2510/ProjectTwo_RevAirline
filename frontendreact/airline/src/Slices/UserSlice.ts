@@ -59,18 +59,7 @@ export const loginUser = createAsyncThunk(
             const res = await axios.post('http://localhost:8000/user/login', credentials);
             console.log("loginrequest");
             console.log(res);
-            return {
-                userId: res.data.userId,
-                email: res.data.email,
-                password: res.data.password,
-                points: res.data.points,
-                role: res.data.role,
-                firstName: res.data.firstName,
-                lastName: res.data.lastName,
-                ccn: res.data.ccn,
-                sick: res.data.sick,
-                ppn: res.data.ppn
-            }
+            return res.data;
         } catch(e){
             return thunkAPI.rejectWithValue('wrong');
         }

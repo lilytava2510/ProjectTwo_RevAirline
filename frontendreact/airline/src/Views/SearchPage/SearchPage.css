@@ -1,0 +1,18 @@
+.login{
+    width: 500px;
+    margin: 10px auto;
+}
+th{
+    background-color: #395A81;
+}
+th, td{
+    padding:6px;
+    width: 60px;
+}
+td{
+    background-color:#384D66;
+}
+h1, h2{
+    color: #C1CFE0;
+    text-align: center;
+}

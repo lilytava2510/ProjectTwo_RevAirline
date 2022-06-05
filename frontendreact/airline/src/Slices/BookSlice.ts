@@ -2,6 +2,7 @@ import React from "react";
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 import {IBooking} from "../Interface/IBooking";
+import { ICity } from "../Interface/ICity";
 
 interface BookSliceState {
     loading: boolean,
@@ -24,7 +25,12 @@ type book = {
    
     userId: any
 }
-
+type tansfer = {
+    date:any,
+    destination: ICity,
+    origin: ICity,
+    price: number
+}
 type ing = { 
     date: any,
     destination: any,
@@ -35,7 +41,21 @@ export const createBook = createAsyncThunk(
     'book/create',
     async(book:book, thunkAPI) => {
         try{
+            
             const res = await axios.post('http://localhost:8000/booking/',book);
+            return res.data;
+              
+          } catch(e){
+            return thunkAPI.rejectWithValue('wrong');
+        }
+    }
+)
+
+export const pointsBook = createAsyncThunk(
+    'book/points',
+    async(book:book, thunkAPI) => {
+        try{
+            const res = await axios.post('http://localhost:8000/booking/points',book);
             return res.data;
               
           } catch(e){
@@ -48,8 +68,9 @@ export const searchBooking = createAsyncThunk(
     "booking/get",
     async (tis:ing, thunkAPI) => {
         try{
+            console.log(tis)
               //axios.defaults.withCredentials = true;
-            const res = await axios.post(`http://localhost:8000/booking/get`, tis);
+            const res = await axios.post(`http://localhost:8000/booking/price`, tis);
   
             return res.data;
         } catch (e){
@@ -94,14 +115,18 @@ export const BookSlice = createSlice({
     reducers: {
         toggleError : (state) => {
             state.error = !state.error;
+        },
+        clearBooking : (state) =>{
+            state.current_booking = undefined;
         }
+        
+    
     },
     extraReducers: (builder) => {
         builder.addCase(createBook.pending, (state, action)=> {
             state.loading = true;
         });
         builder.addCase(createBook.fulfilled, (state, action) => {
-            //The payload in this case, is the return from our asyncThunk from above
             state.current_booking = action.payload;
             state.error = false;
             state.loading = false;
@@ -115,16 +140,29 @@ export const BookSlice = createSlice({
         });
         builder.addCase(searchBooking.fulfilled, (state, action) => {
             state.loading =false;
+            console.log(action.payload)
             state.current_booking= action.payload;
         });
         builder.addCase(userBooking.fulfilled, (state, action)=> {
             state.booking = action.payload;
         })
+        builder.addCase(pointsBook.pending, (state, action)=> {
+            state.loading = true;
+        });
+        builder.addCase(pointsBook.fulfilled, (state, action) => {
+            state.current_booking = action.payload;
+            state.error = false;
+            state.loading = false;
+        });
+        builder.addCase(pointsBook.rejected, (state, action)=> {
+            state.error = true;
+            state.loading = false;
+        });
     }
 })
     
 
 
 
- export const {toggleError} = BookSlice.actions;
+ export const {toggleError, clearBooking} = BookSlice.actions;
 export default BookSlice.reducer;
