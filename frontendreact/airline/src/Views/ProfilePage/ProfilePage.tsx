@@ -22,9 +22,10 @@ useEffect(()=> {
    if(userInfo.error && !userInfo.user){
       navigator('/login');
   }
-  else if (!userInfo.user.role){
+ // else if (!userInfo.user.role)
+ 
       
-  }
+  
 //   else if(!book.booking && userInfo.user){
 //     console.log(userInfo.user.userId);
 //     dispatch (getBooks(userInfo.user.userId));}
