@@ -205,28 +205,28 @@ public class TestUserController {
 
     }
 
-    @Test
-    @Transactional
-    public void successGetAllUser() throws Exception{
-
-        User registeredUser = new User("@", "pass", 3, 2, "a", "b", 101, true, 111);
-        ur.save(registeredUser);
-        User User = new User("?", "test", 3, 2, "c", "d", 101, true, 111);
-        ur.save(User);
-
-        mockMvc.perform(get("/user/get")
-                ).andDo(print()).andExpect(status().isAccepted()).andExpect(jsonPath("$.[0].email").value("@"))
-                .andExpect(jsonPath("$.[0].password").value("pass")).andExpect(jsonPath("$.[0].firstName").value("a"))
-                .andExpect(jsonPath("$.[0].lastName").value("b")).andExpect(jsonPath("$.[0].sick").value(true))
-                .andExpect(jsonPath("$.[0].ccn").value(101)).andExpect(jsonPath("$.[0].ppn").value(111))
-                .andExpect(jsonPath("$.[0].points").value(3)).andExpect(jsonPath("$.[0].role").value(2))
-                .andExpect(jsonPath("$.[0].userId").value(9)).andExpect(jsonPath("$.[1].email").value("?"))
-                .andExpect(jsonPath("$.[1].password").value("test")).andExpect(jsonPath("$.[1].firstName").value("c"))
-                .andExpect(jsonPath("$.[1].lastName").value("d")).andExpect(jsonPath("$.[1].sick").value(true))
-                .andExpect(jsonPath("$.[1].ccn").value(101)).andExpect(jsonPath("$.[1].ppn").value(111))
-                .andExpect(jsonPath("$.[1].points").value(3)).andExpect(jsonPath("$.[1].role").value(2))
-                .andExpect(jsonPath("$.[1].userId").value(10));
-
-    }
+//    @Test
+//    @Transactional
+//    public void successGetAllUser() throws Exception{
+//
+//        User registeredUser = new User("@", "pass", 3, 2, "a", "b", 101, true, 111);
+//        ur.save(registeredUser);
+//        User User = new User("?", "test", 3, 2, "c", "d", 101, true, 111);
+//        ur.save(User);
+//
+//        mockMvc.perform(get("/user/get")
+//                ).andDo(print()).andExpect(status().isAccepted()).andExpect(jsonPath("$.[0].email").value("@"))
+//                .andExpect(jsonPath("$.[0].password").value("pass")).andExpect(jsonPath("$.[0].firstName").value("a"))
+//                .andExpect(jsonPath("$.[0].lastName").value("b")).andExpect(jsonPath("$.[0].sick").value(true))
+//                .andExpect(jsonPath("$.[0].ccn").value(101)).andExpect(jsonPath("$.[0].ppn").value(111))
+//                .andExpect(jsonPath("$.[0].points").value(3)).andExpect(jsonPath("$.[0].role").value(2))
+//                .andExpect(jsonPath("$.[0].userId").value(9)).andExpect(jsonPath("$.[1].email").value("?"))
+//                .andExpect(jsonPath("$.[1].password").value("test")).andExpect(jsonPath("$.[1].firstName").value("c"))
+//                .andExpect(jsonPath("$.[1].lastName").value("d")).andExpect(jsonPath("$.[1].sick").value(true))
+//                .andExpect(jsonPath("$.[1].ccn").value(101)).andExpect(jsonPath("$.[1].ppn").value(111))
+//                .andExpect(jsonPath("$.[1].points").value(3)).andExpect(jsonPath("$.[1].role").value(2))
+//                .andExpect(jsonPath("$.[1].userId").value(10));
+//
+//    }
 
 }

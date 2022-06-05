@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 
 import com.revature.models.User;
+import com.revature.services.EmailSenderService;
 import com.revature.services.UserService;
 import com.revature.util.LoggingUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class UserController {
     private UserService us;
 
     @Autowired
+    private EmailSenderService es;
+
+    @Autowired
     public UserController(UserService us) {
         this.us = us;
     }
@@ -32,10 +36,36 @@ public class UserController {
         int ccn = Integer.parseInt(u.get("ccn"));
         int ppn = Integer.parseInt(u.get("ppn"));
 
-        User we = us.createUser(u.get("email"), u.get("password"), points, role, u.get("firstName"), u.get("lastName"), ccn, sick, ppn);
+        try{
+            User we = us.createUser(u.get("email"), u.get("password"), points, role, u.get("firstName"), u.get("lastName"), ccn, sick, ppn);
+            if(we != null){
+                es.sendEmail(we.getEmail(),
+                        "Welcome to RevAir!",
+                        "Your account has been created with a userID of: "+ we.getUserId() + "and Password: "+ we.getPassword());
+                return new ResponseEntity<>(we, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            }
 
-        return new ResponseEntity<>(we, HttpStatus.CREATED);
+
+        }catch(Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
+
     }
+
+//    @PostMapping("/user/")
+//    public ResponseEntity<Object> handleRegister(@RequestBody LinkedHashMap<String, String> u) {
+//        boolean sick = u.get("sick").equals("true");
+//        int points = Integer.parseInt(u.get("points"));
+//        int role = Integer.parseInt(u.get("role"));
+//        int ccn = Integer.parseInt(u.get("ccn"));
+//        int ppn = Integer.parseInt(u.get("ppn"));
+//
+//        User we = us.createUser(u.get("email"), u.get("password"), points, role, u.get("firstName"), u.get("lastName"), ccn, sick, ppn);
+//
+//        return new ResponseEntity<>(we, HttpStatus.CREATED);
+//    }
 
     @PostMapping("/user/login")
     public ResponseEntity<Object> handleLoginUser(@RequestBody LinkedHashMap<String, String> u) {
