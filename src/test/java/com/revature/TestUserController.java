@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -22,7 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+@DirtiesContext(classMode= DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = Pilot.class)
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
@@ -46,7 +47,7 @@ public class TestUserController {
     @Transactional
     public void successCreateUser() throws Exception{
         LinkedHashMap<String,String> registerBody = new LinkedHashMap<>();
-        registerBody.put("email","@");
+        registerBody.put("email","pkiecun@gmail.com");
         registerBody.put("password","pass");
         registerBody.put("firstName","a");
         registerBody.put("lastName","b");
@@ -57,7 +58,7 @@ public class TestUserController {
         registerBody.put("role","2");
 
         mockMvc.perform(post("/user/").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(registerBody))
-                ).andDo(print()).andExpect(status().isCreated()).andExpect(jsonPath("$.email").value("@"))
+                ).andDo(print()).andExpect(status().isCreated()).andExpect(jsonPath("$.email").value("pkiecun@gmail.com"))
                 .andExpect(jsonPath("$.password").value("pass")).andExpect(jsonPath("$.firstName").value("a"))
                 .andExpect(jsonPath("$.lastName").value("b")).andExpect(jsonPath("$.sick").value(true))
                 .andExpect(jsonPath("$.ccn").value(101)).andExpect(jsonPath("$.ppn").value(111))
@@ -84,7 +85,7 @@ public class TestUserController {
         ur.save(registeredUser);
 
         MvcResult content = mockMvc.perform(post("/user/").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(registerBody))
-        ).andDo(print()).andExpect(status().isCreated()).andReturn();
+        ).andDo(print()).andExpect(status().isNotAcceptable()).andReturn();
         String result = content.getResponse().getContentAsString();
         assertEquals("",result);
 
@@ -107,7 +108,7 @@ public class TestUserController {
                 .andExpect(jsonPath("$.lastName").value("b")).andExpect(jsonPath("$.sick").value(true))
                 .andExpect(jsonPath("$.ccn").value(101)).andExpect(jsonPath("$.ppn").value(111))
                 .andExpect(jsonPath("$.points").value(3)).andExpect(jsonPath("$.role").value(2))
-                .andExpect(jsonPath("$.userId").value(3));
+                .andExpect(jsonPath("$.userId").value(1));
 
 
     }
@@ -146,7 +147,7 @@ public class TestUserController {
         updateBody.put("ppn","222");
         updateBody.put("points","1");
         updateBody.put("role","4");
-        updateBody.put("userId","7");
+        updateBody.put("userId","1");
 
         mockMvc.perform(put("/user/update").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(updateBody))
                 ).andDo(print()).andExpect(status().isAccepted()).andExpect(jsonPath("$.email").value("#"))
@@ -154,7 +155,7 @@ public class TestUserController {
                 .andExpect(jsonPath("$.lastName").value("d")).andExpect(jsonPath("$.sick").value(false))
                 .andExpect(jsonPath("$.ccn").value(212)).andExpect(jsonPath("$.ppn").value(222))
                 .andExpect(jsonPath("$.points").value(1)).andExpect(jsonPath("$.role").value(4))
-                .andExpect(jsonPath("$.userId").value(7));
+                .andExpect(jsonPath("$.userId").value(1));
 
     }
 
@@ -177,7 +178,7 @@ public class TestUserController {
         updateBody.put("ppn","222");
         updateBody.put("points","1");
         updateBody.put("role","4");
-        updateBody.put("userId","4");
+        updateBody.put("userId","1");
 
         MvcResult content = mockMvc.perform(put("/user/update").contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsString(updateBody))
         ).andDo(print()).andExpect(status().isAccepted()).andReturn();
@@ -195,13 +196,13 @@ public class TestUserController {
         User registeredUser = new User("@", "pass", 3, 2, "a", "b", 101, true, 111);
         ur.save(registeredUser);
 
-        mockMvc.perform(get("/user/get/8")
+        mockMvc.perform(get("/user/get/1")
                 ).andDo(print()).andExpect(status().isAccepted()).andExpect(jsonPath("$.email").value("@"))
                 .andExpect(jsonPath("$.password").value("pass")).andExpect(jsonPath("$.firstName").value("a"))
                 .andExpect(jsonPath("$.lastName").value("b")).andExpect(jsonPath("$.sick").value(true))
                 .andExpect(jsonPath("$.ccn").value(101)).andExpect(jsonPath("$.ppn").value(111))
                 .andExpect(jsonPath("$.points").value(3)).andExpect(jsonPath("$.role").value(2))
-                .andExpect(jsonPath("$.userId").value(8));
+                .andExpect(jsonPath("$.userId").value(1));
 
     }
 

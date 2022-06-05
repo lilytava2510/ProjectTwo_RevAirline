@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -24,7 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+@DirtiesContext(classMode= DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = Pilot.class)
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
@@ -92,9 +93,9 @@ public class TestCityController {
 
         mockMvc.perform(get("/city/get")
                 ).andDo(print()).andExpect(status().isAccepted()).andExpect(jsonPath("$.[0].city").value("la"))
-                .andExpect(jsonPath("$.[0].position").value(3)).andExpect(jsonPath("$.[0].cityId").value(2))
+                .andExpect(jsonPath("$.[0].position").value(3)).andExpect(jsonPath("$.[0].cityId").value(1))
                 .andExpect(jsonPath("$.[1].city").value("ny"))
-                .andExpect(jsonPath("$.[1].position").value(4)).andExpect(jsonPath("$.[1].cityId").value(3));
+                .andExpect(jsonPath("$.[1].position").value(4)).andExpect(jsonPath("$.[1].cityId").value(2));
 
 
 

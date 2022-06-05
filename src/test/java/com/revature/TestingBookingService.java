@@ -129,7 +129,7 @@ import static org.mockito.Mockito.*;
             when((br).findByUser(any())).thenReturn(bl);
             ArrayList<Booking> x = (ArrayList<Booking>) bs.findCurrentBookingByUId(1);
             verify(br).findByUser(any());
-            assertEquals("1", x.get(0).getBookingid(),"passing");
+            assertEquals(1, x.get(0).getBookingid(),"passing");
         }
 
         @Test
