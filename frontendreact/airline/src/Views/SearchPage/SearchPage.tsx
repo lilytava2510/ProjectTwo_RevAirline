@@ -12,7 +12,8 @@ import { CreateCity } from "../../Components/CityCreate/City";
 import { CityCreate } from "../../Components/CityCreate/CityCreate";
 import { ICity } from "../../Interface/ICity";
 import { BuyNow } from "../../Components/Booking/BuyNow";
-
+import {Link} from 'react-router-dom';
+import '../LoginPage/LoginPage.css';
 export const SearchPage: React.FC = () => {
     
   
@@ -26,12 +27,15 @@ export const SearchPage: React.FC = () => {
          dispatch(getCity());
      }
    },[city.cities, available, userState])
-   console.log(userState.user?.role);
     return(
         <>
           <Navbar/>
-          <h1>Welcome to Revature Airline</h1>
-          <h2>Below are the flights available</h2>
+          <h1 className="login">Welcome to Revature Airline</h1>
+          {!userState.user?
+          <li className="nav-item">
+                    <Link to={"/create"} className="nav-link">Create an account</Link>
+                </li> : <></> }
+          <h2 className="login">Below are the flights available</h2>
           <HomePage/>
           {userState.user?.role == 3?
           <CityCreate />: <></>}

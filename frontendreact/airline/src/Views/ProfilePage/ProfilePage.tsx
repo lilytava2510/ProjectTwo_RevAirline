@@ -14,18 +14,16 @@ import { getBooks } from "../../Slices/BookSlice";
 export const InfoPage: React.FC = () => {
 
 const userInfo = useSelector((state:RootState) => state.user);
-//const book = useSelector((state:RootState) => state.book);
+const bookInfo = useSelector((state:RootState) => state.book);
 const dispatch:AppDispatch = useDispatch();
 const navigator = useNavigate();
 let check = true;
 useEffect(()=> {
-   if(userInfo.error && !userInfo.user){
+   if(!userInfo.user){
       navigator('/login');
-  }
-//   else if(!book.booking && userInfo.user){
-//     console.log(userInfo.user.userId);
-//     dispatch (getBooks(userInfo.user.userId));}
-},[userInfo.user]);
+  }else if(!bookInfo.booking && userInfo.user){;
+     dispatch (getBooks(userInfo.user.userId));}
+},[userInfo.user, bookInfo.booking]);
 return(
     <>
     <Navbar/>
@@ -62,8 +60,8 @@ return(
              <th>PassengerId</th>
          </tr>
          </thead>
-        {userInfo.user?.bookingList?
-          userInfo.user.bookingList.map((post:IBooking) => {
+        {bookInfo.booking?
+          bookInfo.booking.map((post:IBooking) => {
                 return (
                 <BookingPage {...post} key={post.bookingid}/>
             )

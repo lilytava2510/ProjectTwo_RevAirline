@@ -23,16 +23,15 @@ type Login = {
 
 }
 type info = {
-    userId: number,
-    email: string,
-    password: string,
+    email: any,
+    password: any,
     points: any,
     role: any,
-    firstName: string,
-    lastName: string,
+    firstName: any,
+    lastName: any,
     ccn: any,
-    sick: boolean,
-    ppn: any
+    sick: any,
+    ppn: any,
 
    
 }
@@ -108,13 +107,13 @@ export const updateUser = createAsyncThunk(
 
   export const createUser = createAsyncThunk(
     '/user/',
-    async(change:change, thunkAPI) => {
+    async(make:info, thunkAPI) => {
          try{
-              const res = await axios.post('http://localhost:8000/user/',change);
+              const res = await axios.post('http://localhost:8000/user/',make);
         
-        return  {
+        return  res.data;
                 
-        }
+        
 
         } catch(e){
             return thunkAPI.rejectWithValue('Wrong');
@@ -160,6 +159,19 @@ export const UserSlice = createSlice({
                 });
 
         builder.addCase(updateUser.rejected, (state, action) => {
+                state.error = true;
+                state.loading = false;
+                });
+        builder.addCase(createUser.pending, (state, action) => {
+            state.loading = true;
+        });
+        builder.addCase(createUser.fulfilled, (state, action) => {
+            state.user = action.payload;
+            state.error = false;
+            state.loading = false;
+                });
+
+        builder.addCase(createUser.rejected, (state, action) => {
                 state.error = true;
                 state.loading = false;
                 });

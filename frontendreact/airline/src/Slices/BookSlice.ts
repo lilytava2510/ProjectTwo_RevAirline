@@ -118,6 +118,7 @@ export const BookSlice = createSlice({
         },
         clearBooking : (state) =>{
             state.current_booking = undefined;
+            state.booking = undefined;
         }
         
     
@@ -127,7 +128,8 @@ export const BookSlice = createSlice({
             state.loading = true;
         });
         builder.addCase(createBook.fulfilled, (state, action) => {
-            state.current_booking = action.payload;
+            state.current_booking = undefined;
+            state.booking = undefined;
             state.error = false;
             state.loading = false;
         });
@@ -140,17 +142,27 @@ export const BookSlice = createSlice({
         });
         builder.addCase(searchBooking.fulfilled, (state, action) => {
             state.loading =false;
-            console.log(action.payload)
+            state.error = false;
             state.current_booking= action.payload;
         });
-        builder.addCase(userBooking.fulfilled, (state, action)=> {
+        builder.addCase(getBooks.pending, (state, action) => {
+            state.loading = true;
+        });
+        builder.addCase(getBooks.fulfilled, (state, action)=> {
             state.booking = action.payload;
+            state.error = false;
+            state.loading = false;
         })
+        builder.addCase(getBooks.rejected, (state, action)=> {
+            state.error = true;
+            state.loading = false;
+        });
         builder.addCase(pointsBook.pending, (state, action)=> {
             state.loading = true;
         });
         builder.addCase(pointsBook.fulfilled, (state, action) => {
-            state.current_booking = action.payload;
+            state.current_booking = undefined;
+            state.booking = undefined;
             state.error = false;
             state.loading = false;
         });

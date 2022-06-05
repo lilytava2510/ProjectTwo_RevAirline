@@ -4,7 +4,7 @@ import './App.css';
 import { LoginPage } from './Views/LoginPage/LoginPage';
 import {BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import {InfoPage} from './Views/ProfilePage/ProfilePage';
-import { UserCreate } from './Components/UserCreate/UserCreate';
+import { UserCreate } from './Views/UserCreate/Usercreate';
 import {SearchPage} from './Views/SearchPage/SearchPage';
 
 
