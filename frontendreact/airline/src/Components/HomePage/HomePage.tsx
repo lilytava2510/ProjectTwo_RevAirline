@@ -66,29 +66,26 @@ import React, {useState} from 'react';
              </div>
              <form className="login-form">
                  <div className="input-div">
-                   <h4 className="input-h4">To:</h4>
-                     <input autoComplete="off" className="login-input" type="text" name="to" placeholder="to" onChange={handleInput}/>
-                 </div>
-                 <div className="input-div">
-                     <h4 className="input-h4">From:</h4>
-                     <select name="type" id="from" onChange={handleSelect}>
+                   <h4 className="input-h4">From:</h4>
+                   <select name="type" id="from" onChange={handleSelect}>
                      <option></option>
               {routes.cities?
               routes.cities.map((element:ICity) => (
               <option  key={element.cityId} value={element.city} >{element.city}</option>
               )): <option></option>}</select>
+                 </div>
+                 <div className="input-div">
+                     <h4 className="input-h4">To:</h4>
               <select name="type" id="to" onChange={handleSelect}>
               <option></option>
               {routes.cities?
               routes.cities.map((element:ICity) => (
               <option  key={element.cityId} value={element.city} >{element.city}</option>
-              )): <option></option>}</select>
-                        
-                     <input className="login-input" type="password" name="from" placeholder="from" onChange={handleInput}/>
+              )): <option></option>}</select>   
                  </div>
                  <div className="input-div">
                      <h4 className="input-h4">Date:</h4>
-                     <input className="login-input" type="password" name="date" placeholder="yyyy-mm-dd" onChange={handleInput}/>
+                     <input className="login-input" type="text" name="date" placeholder="yyyy-mm-dd" onChange={handleInput}/>
                  </div>
  
                  <div className="input-div">
