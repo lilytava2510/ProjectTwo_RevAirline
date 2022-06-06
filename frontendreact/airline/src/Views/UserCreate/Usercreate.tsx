@@ -22,8 +22,7 @@ const navigator = useNavigate();
 return(
     <>
     <Navbar/>
-    <h1 className="login"> Below You Can Create Your New Account:</h1>
-    <h2 className="login">Fill out the information below:</h2>
+    <h2 className="create-header">Create Your New Account:</h2>
     <div className="login" >
             <Create/>
         </div>

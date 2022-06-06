@@ -18,6 +18,7 @@ function App() {
     <Route path="/info" element={<InfoPage />}/>
     <Route path="/create" element={<UserCreate />}/>
     <Route path="/search" element={<SearchPage />}/>
+    
     </Routes>
     </BrowserRouter>
    // stuff

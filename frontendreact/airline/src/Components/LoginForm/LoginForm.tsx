@@ -4,6 +4,9 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../Store';
 import { loginUser } from '../../Slices/UserSlice';
 import { useNavigate } from 'react-router-dom';
+import { IUser } from '../../Interface/IUser';
+
+
 
 export const Login: React.FC = () => {
 
@@ -41,10 +44,8 @@ export const Login: React.FC = () => {
         
         <div className="login">
             <div className="text-container">
-                <h1 className="login-header">Welcome to Revature Airlines: </h1>
-                <h3 className="login-header">Please Sign In</h3>
-
-                <h2 className="login-header">Login </h2>
+                <h2 className="login-header">Welcome to Revature Airlines</h2>
+               <h1 className="login-header">Login</h1>
             </div>
             <form className="login-form">
                 <div className="input-div">
@@ -60,6 +61,7 @@ export const Login: React.FC = () => {
                 </div>
             </form>
                 <button className="login-button" onClick={handleLogin}>Login</button>
+             
         </div>
     </>
     )

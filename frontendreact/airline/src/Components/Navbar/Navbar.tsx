@@ -34,12 +34,17 @@ export const Navbar: React.FC = () => {
             <ul className='nav-menu'>
                 <li className="nav-item">
                     <Link to={`/info`} className="nav-link">Profile</Link>
+                   
                 </li>
                 <li className="nav-item">
                     <Link to={"/search"} className="nav-link">Search</Link>
                 </li>
                 <li className="nav-item">
                     <Link to={"/login"} className="nav-link">Login</Link>
+                </li>
+
+                <li className="nav-item">
+                    <Link to={"/create"} className="nav-link">Register</Link>
                 </li>
                 
                 <li className="logout">

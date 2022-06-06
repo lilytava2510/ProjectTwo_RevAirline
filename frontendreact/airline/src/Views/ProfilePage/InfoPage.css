@@ -10,6 +10,17 @@
     --btn-hover:#412D7D;
   }
 
+.user-info {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5px;
+    border: 2px var(--bs-blue);
+    padding: 20px;
+    color:var(--text-white)
+}
 .login {
     width: fit-content;
     height: fit-content;
@@ -17,7 +28,7 @@
     flex-direction: column;
     justify-content: center;
     border-radius: 5px;
-    border: 2px solid var(--bs-blue);
+    border: 2px var(--bs-blue);
     padding: 20px;
     color:var(--text-white)
 }

@@ -5,6 +5,7 @@ import React, {useState} from 'react';
  import { useDispatch, useSelector } from 'react-redux';
  import { clearBooking, searchBooking } from '../../Slices/BookSlice';
  import { SelectCity } from './SelectCity';
+ import "./HomePage.css";
  export const HomePage: React.FC = () =>{
     
     const routes = useSelector((state:RootState)=>state.city);
@@ -59,7 +60,7 @@ import React, {useState} from 'react';
          
          <div className="login">
              <div className="text-container">
-                 <h1 className="login-header">Welcome to Revature Airlines: </h1>
+             <h1 className="heading">Welcome to Revature Airline</h1>
                 
  
              
@@ -67,8 +68,8 @@ import React, {useState} from 'react';
              <form className="login-form">
                  <div className="input-div">
                    <h4 className="input-h4">From:</h4>
-                   <select name="type" id="from" onChange={handleSelect}>
-                     <option></option>
+                   <select className='from-input' name="type" id="from" onChange={handleSelect}>
+                     <option className='from-input'></option>
               {routes.cities?
               routes.cities.map((element:ICity) => (
               <option  key={element.cityId} value={element.city} >{element.city}</option>
@@ -76,7 +77,7 @@ import React, {useState} from 'react';
                  </div>
                  <div className="input-div">
                      <h4 className="input-h4">To:</h4>
-              <select name="type" id="to" onChange={handleSelect}>
+              <select className='from-input' name="type" id="to" onChange={handleSelect}>
               <option></option>
               {routes.cities?
               routes.cities.map((element:ICity) => (
@@ -85,7 +86,7 @@ import React, {useState} from 'react';
                  </div>
                  <div className="input-div">
                      <h4 className="input-h4">Date:</h4>
-                     <input className="login-input" type="text" name="date" placeholder="yyyy-mm-dd" onChange={handleInput}/>
+                     <input className="from-input" type="text" name="date" placeholder="yyyy-mm-dd" onChange={handleInput}/>
                  </div>
  
                  <div className="input-div">
