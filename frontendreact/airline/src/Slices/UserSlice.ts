@@ -153,6 +153,7 @@ export const UserSlice = createSlice({
             state.loading = true;
         });
         builder.addCase(updateUser.fulfilled, (state, action) => {
+            state.user = undefined;
             state.user = action.payload;
             state.error = false;
             state.loading = false;
@@ -172,6 +173,19 @@ export const UserSlice = createSlice({
                 });
 
         builder.addCase(createUser.rejected, (state, action) => {
+                state.error = true;
+                state.loading = false;
+                });
+        builder.addCase(getUserInfo.pending, (state, action) => {
+            state.loading = true;
+        });
+        builder.addCase(getUserInfo.fulfilled, (state, action) => {
+            state.user = action.payload;
+            state.error = false;
+            state.loading = false;
+                });
+
+        builder.addCase(getUserInfo.rejected, (state, action) => {
                 state.error = true;
                 state.loading = false;
                 });

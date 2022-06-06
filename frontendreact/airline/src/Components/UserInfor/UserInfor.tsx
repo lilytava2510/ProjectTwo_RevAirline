@@ -97,11 +97,11 @@ export const Info: React.FC = () => {
             <div className="input-div">
                   <h4 className="input-h4">Enter New Lastname:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="lastname" placeholder="lastname" onChange={handleInput}/>
-                </div>
-                <div className="input-div">
+                 </div>
+               {/* <div className="input-div">
                   <h4 className="input-h4">Enter New Username:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="username" placeholder="username" onChange={handleInput}/>
-                </div>
+                </div> */}
                 <div className="input-div">
                   <h4 className="input-h4">Enter New Email:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="email" placeholder="email" onChange={handleInput}/>
@@ -118,9 +118,9 @@ export const Info: React.FC = () => {
                   <h4 className="input-h4">Enter New Passport Number:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="ppn" placeholder="passport" onChange={handleInput}/>
                 </div>
-                <label>
+                {/* <label>
           <input name="rememberMe" checked={true} onChange={handleInput} type="checkbox" /> Tested
-                 </label>
+                 </label> */}
                 </div>
             </form>
                 <button className="login-button" onClick={handleUpdate}>Update</button>

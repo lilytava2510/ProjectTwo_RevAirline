@@ -100,10 +100,10 @@ export const Create: React.FC = () => {
                   <h4 className="input-h4">Enter Lastname:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="lastname" placeholder="lastname" onChange={handleInput}/>
                 </div>
-                <div className="input-div">
+                {/* <div className="input-div">
                   <h4 className="input-h4">Enter Username:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="username" placeholder="username" onChange={handleInput}/>
-                </div>
+                </div> */}
                 <div className="input-div">
                   <h4 className="input-h4">Enter Email:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="email" placeholder="email" onChange={handleInput}/>

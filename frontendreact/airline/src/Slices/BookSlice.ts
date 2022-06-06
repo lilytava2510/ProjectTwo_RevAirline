@@ -145,6 +145,10 @@ export const BookSlice = createSlice({
             state.error = false;
             state.current_booking= action.payload;
         });
+        builder.addCase(searchBooking.rejected, (state, action)=> {
+            state.error = true;
+            state.loading = false;
+        });
         builder.addCase(getBooks.pending, (state, action) => {
             state.loading = true;
         });

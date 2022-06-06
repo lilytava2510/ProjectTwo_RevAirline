@@ -51,7 +51,7 @@ import React, {useState} from 'react';
              destination
              
          };
-            dispatch(clearBooking());
+            //dispatch(clearBooking());
       dispatch(searchBooking(tis));
      }
 
@@ -68,7 +68,7 @@ import React, {useState} from 'react';
              <form className="login-form">
                  <div className="input-div">
                    <h4 className="input-h4">From:</h4>
-                   <select className='from-input' name="type" id="from" onChange={handleSelect}>
+                   <select className='from-input' name="from" id="from" onChange={handleSelect}>
                      <option className='from-input'></option>
               {routes.cities?
               routes.cities.map((element:ICity) => (
@@ -77,7 +77,7 @@ import React, {useState} from 'react';
                  </div>
                  <div className="input-div">
                      <h4 className="input-h4">To:</h4>
-              <select className='from-input' name="type" id="to" onChange={handleSelect}>
+              <select className='from-input' name="to" id="to" onChange={handleSelect}>
               <option></option>
               {routes.cities?
               routes.cities.map((element:ICity) => (

@@ -43,12 +43,12 @@ return(
                 <td>Passport: {userInfo.user?.ppn}</td>
               </tr>
         </thead>
-            {userInfo.passenger?
+            {/* {userInfo.passenger?
             userInfo.passenger.map((post:IUser) => {
                 return <Info {...post} key={post.userId}/>
             }): <Info/>
             
-        }
+        } */}
     </table>
         
         
