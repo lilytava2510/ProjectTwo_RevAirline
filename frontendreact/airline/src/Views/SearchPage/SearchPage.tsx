@@ -42,9 +42,9 @@ export const SearchPage: React.FC = () => {
           <table className="login">
         <thead>
         <tr>
+             <th>Position</th>
              <th>CityId</th>
              <th>Name</th>
-             <th>Position</th>
           
          </tr>
          </thead>

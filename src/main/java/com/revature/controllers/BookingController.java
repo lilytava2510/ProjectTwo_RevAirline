@@ -19,7 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://revairline-p2.s3.amazonaws.com")
 public class BookingController {
 
     private BookingService bs;
