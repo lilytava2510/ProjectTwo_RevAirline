@@ -1,6 +1,8 @@
 package com.revature.services;
 
 
+import com.revature.models.Booking;
+import com.revature.models.City;
 import com.revature.models.User;
 import com.revature.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,12 @@ public class UserService {
 
 
     private UserRepo ur;
+    private CityService cs;
 
 
     @Autowired
-    public UserService(UserRepo ur) {
+    public UserService(UserRepo ur, CityService cs) {
+        this.cs = cs;
         this.ur = ur;
     }
 
@@ -41,8 +45,48 @@ public class UserService {
         User u = new User(userid, ccn, email, firstname, lastname, password, points, ppn, role, sick);
         User l = ur.findByEmail(email);
         if(l == null ) {
+            User un = findCurrentUserById(userid);
+            List<Booking> ul = un.getBookingList();
+            for (Booking book: ul) {
+                City originCity = cs.findCurrentCityByName(book.getOrigin().getCity());
+                for (Booking ol: originCity.getDepartures()) {
+                    if(ol.getUser().getUserId() == userid){ol.setUser(u);}
+                }
+                for (Booking ol: originCity.getArrivals()) {
+                    if(ol.getUser().getUserId() == userid){ol.setUser(u);}
+                }
+                City destinationCity = cs.findCurrentCityByName(book.getDestination().getCity());
+                for (Booking dl: destinationCity.getArrivals()) {
+                    if(dl.getUser().getUserId() == userid){dl.setUser(u);}
+                }
+                for (Booking dl: destinationCity.getDepartures()) {
+                    if(dl.getUser().getUserId() == userid){dl.setUser(u);}
+                }
+                book.setUser(u);
+            }
+            u.setBookingList(ul);
             return ur.saveAndFlush(u);
-        }else if(l.getUserId() == userid){return ur.saveAndFlush(u);}else{return null;}
+        }else if(l.getUserId() == userid){
+        List<Booking> ul = l.getBookingList();
+            for (Booking book: ul) {
+                City originCity = cs.findCurrentCityByName(book.getOrigin().getCity());
+                for (Booking ol: originCity.getDepartures()) {
+                    if(ol.getUser().getUserId() == userid){ol.setUser(u);}
+                }
+                for (Booking ol: originCity.getArrivals()) {
+                    if(ol.getUser().getUserId() == userid){ol.setUser(u);}
+                }
+                City destinationCity = cs.findCurrentCityByName(book.getDestination().getCity());
+                for (Booking dl: destinationCity.getArrivals()) {
+                    if(dl.getUser().getUserId() == userid){dl.setUser(u);}
+                }
+                for (Booking dl: destinationCity.getDepartures()) {
+                    if(dl.getUser().getUserId() == userid){dl.setUser(u);}
+                }
+                book.setUser(u);
+            }
+            u.setBookingList(ul);
+            return ur.saveAndFlush(u);}else{return null;}
     }
 
 //    public User findCurrentUserByEmail(String email) {

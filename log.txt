@@ -18,3 +18,5 @@
 2022-06-06 07:45:08 WARN  LoggingUtil:80 - improper attempt at login on email: d
 2022-06-06 07:45:09 WARN  LoggingUtil:80 - improper attempt at login on email: d
 2022-06-06 08:28:24 WARN  LoggingUtil:80 - improper attempt at login on email: @
+2022-06-06 09:18:52 WARN  LoggingUtil:80 - improper attempt at login on email: @
+2022-06-06 09:39:01 WARN  LoggingUtil:80 - improper attempt at login on email: @
