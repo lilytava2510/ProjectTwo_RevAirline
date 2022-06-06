@@ -87,11 +87,10 @@ export const Create: React.FC = () => {
         
     }
     return(
-        <div className="login">
-            <div className="text-container">
-                <h1 className="login-header"></h1>
-                <h2 className="login-header">Below fill out your Information.</h2>
-            </div>
+        <div>
+            
+             <h2 className="create-header">Below fill out your Information.</h2>
+            
             <form className="login-form">
             <div className="input-div">
                   <h4 className="input-h4">Enter Firstname:</h4>
@@ -113,12 +112,13 @@ export const Create: React.FC = () => {
                     <h4 className="input-h4">Enter Password:</h4>
                     <input className="login-input" type="password" name="password" placeholder="password" onChange={handleInput}/>
                 </div>
-                <div className="input-div">
+                
                 <div className="input-div">
                   <h4 className="input-h4">Enter Credit Card Number:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="ccn" placeholder="creditcard" onChange={handleInput}/>
-                </div><div className="input-div">
-                  <h4 className="input-h4">Enter Passport Number:</h4>
+                </div>
+                <div className="input-div">
+                   <h4 className="input-h4">Enter Passport Number:</h4>
                     <input autoComplete="off" className="login-input" type="text" name="ppn" placeholder="passport" onChange={handleInput}/>
                 </div>
                 {/* <div className="input-div">
@@ -132,9 +132,10 @@ export const Create: React.FC = () => {
                 {/* <label>
           <input name="rememberMe" checked={true} onChange={handleInput} type="checkbox" /> Tested
                  </label> */}
-                </div>
+                
             </form>
                 <button className="login-button" onClick={handleUpdate}>Create Account</button>
         </div>
+        
     )
 }

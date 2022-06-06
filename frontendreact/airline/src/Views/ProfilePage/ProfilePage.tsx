@@ -28,9 +28,10 @@ return(
     <>
     <Navbar/>
 
-    <h1 className="login"> {userInfo.user?.firstName}Profile Page</h1>
+    <h1 className="login"> Welcome  {userInfo.user?.firstName}</h1>
     <h2 className="login">Your Information Below</h2>
-    <table className="login" >
+
+    <table className="user-info" >
         <thead>
                <tr>
                 <td>UserID: {userInfo.user?.userId}</td>
@@ -40,25 +41,27 @@ return(
                 <td>Password: {userInfo.user?.password}</td>
                 <td>Credit Card: {userInfo.user?.ccn}</td>
                 <td>Passport: {userInfo.user?.ppn}</td>
-            </tr>
-            </thead>
+              </tr>
+        </thead>
             {userInfo.passenger?
             userInfo.passenger.map((post:IUser) => {
                 return <Info {...post} key={post.userId}/>
             }): <Info/>
             
         }
-        </table>
-        <table className="login">
+    </table>
+        
+        
+    <table className="login">
         <thead>
-        <tr>
+          <tr>
              <th>BookingId</th>
              <th>Date</th>
              <th>Origin</th>
              <th>Destination</th>
              <th>Price</th>
              <th>PassengerId</th>
-         </tr>
+          </tr>
          </thead>
         {bookInfo.booking?
           bookInfo.booking.map((post:IBooking) => {
@@ -69,7 +72,7 @@ return(
             <tr>
                 <td>no tickets to display</td>
             </tr>}
-           </table>
+    </table>
 
     </>      
 )

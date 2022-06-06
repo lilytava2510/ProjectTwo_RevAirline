@@ -13,6 +13,7 @@ import { CityCreate } from "../../Components/CityCreate/CityCreate";
 import { ICity } from "../../Interface/ICity";
 import { BuyNow } from "../../Components/Booking/BuyNow";
 import {Link} from 'react-router-dom';
+import "./SearchPage.css";
 import '../LoginPage/LoginPage.css';
 export const SearchPage: React.FC = () => {
     
@@ -30,25 +31,32 @@ export const SearchPage: React.FC = () => {
     return(
         <>
           <Navbar/>
-          <h1 className="login">Welcome to Revature Airline</h1>
+          
+         
+        
+          <HomePage/>
+          
+          {userState.user?.role == 3?
+          <CityCreate />: <></>}
+
+          <div className="add" >
           {!userState.user?
           <li className="nav-item">
                     <Link to={"/create"} className="nav-link">Create an account</Link>
                 </li> : <></> }
-          <h2 className="login">Below are the flights available</h2>
-          <HomePage/>
-          {userState.user?.role == 3?
-          <CityCreate />: <></>}
-          <table className="login">
-        <thead>
-        <tr>
-             <th>CityId</th>
-             <th>Name</th>
-             <th>Position</th>
-          
-         </tr>
-         </thead>
-        {city.cities?
+
+          </div>
+          <h2 className="s">Below are the flights available</h2>
+          <table>
+    <thead className = "aviableflight">
+      <tr>
+        <td>Position</td>
+        <td>CityId</td>
+        <td>Name</td>
+      </tr>
+    </thead>
+    <tbody className = "aviableflight">
+      {city.cities?
           city.cities.map((post:ICity) => {
                 return (
                   <CreateCity {...post} key={post.cityId}/>
@@ -58,9 +66,9 @@ export const SearchPage: React.FC = () => {
                 <td>no posts to display</td>
             </tr>
             }
-    
-           </table>
-           <table>
+    </tbody>
+</table>
+           <table className = "aviableflight">
              
            {available.current_booking?
           <BuyNow {...available.current_booking}/>
