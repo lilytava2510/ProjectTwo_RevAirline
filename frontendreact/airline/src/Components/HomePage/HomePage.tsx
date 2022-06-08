@@ -3,9 +3,16 @@ import React, {useState} from 'react';
  import { IBooking } from '../../Interface/IBooking';
  import {AppDispatch , RootState} from  '../../Store';
  import { useDispatch, useSelector } from 'react-redux';
+<<<<<<< HEAD
  import { clearBooking, searchBooking } from '../../Slices/BookSlice';
  import { SelectCity } from './SelectCity';
  import "./HomePage.css";
+=======
+ import { searchBooking } from '../../Slices/BookSlice';
+
+ import "./HomePage.css";
+
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
  export const HomePage: React.FC = () =>{
     
     const routes = useSelector((state:RootState)=>state.city);

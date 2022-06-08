@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../Store";
@@ -12,9 +15,15 @@ import { CreateCity } from "../../Components/CityCreate/City";
 import { CityCreate } from "../../Components/CityCreate/CityCreate";
 import { ICity } from "../../Interface/ICity";
 import { BuyNow } from "../../Components/Booking/BuyNow";
+<<<<<<< HEAD
 import {Link} from 'react-router-dom';
 import "./SearchPage.css";
 import '../LoginPage/LoginPage.css';
+=======
+
+import "./SearchPage.css";
+
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
 export const SearchPage: React.FC = () => {
     
   
@@ -28,6 +37,10 @@ export const SearchPage: React.FC = () => {
          dispatch(getCity());
      }
    },[city.cities, available, userState])
+<<<<<<< HEAD
+=======
+   console.log(userState.user?.role);
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
     return(
         <>
           <Navbar/>
@@ -35,6 +48,7 @@ export const SearchPage: React.FC = () => {
          
         
           <HomePage/>
+<<<<<<< HEAD
           
           {userState.user?.role == 3?
           <CityCreate />: <></>}
@@ -57,6 +71,20 @@ export const SearchPage: React.FC = () => {
     </thead>
     <tbody className = "aviableflight">
       {city.cities?
+=======
+          {userState.user?.role == 3?
+          <CityCreate />: <></>}
+          <table className="login">
+        <thead>
+        <tr>
+             <th>CityId</th>
+             <th>Name</th>
+             <th>Position</th>
+          
+         </tr>
+         </thead>
+        {city.cities?
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
           city.cities.map((post:ICity) => {
                 return (
                   <CreateCity {...post} key={post.cityId}/>
@@ -66,9 +94,15 @@ export const SearchPage: React.FC = () => {
                 <td>no posts to display</td>
             </tr>
             }
+<<<<<<< HEAD
     </tbody>
 </table>
            <table className = "aviableflight">
+=======
+    
+           </table>
+           <table>
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
              
            {available.current_booking?
           <BuyNow {...available.current_booking}/>

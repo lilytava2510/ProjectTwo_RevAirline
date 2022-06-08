@@ -4,8 +4,11 @@ html, body, #root {
   background-image: url('./background-airline.jpg');
   background-position: center;
   background-size: cover;
+<<<<<<< HEAD
   
   
+=======
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
 }
 
 * {

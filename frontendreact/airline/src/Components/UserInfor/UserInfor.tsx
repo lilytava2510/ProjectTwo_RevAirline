@@ -8,6 +8,8 @@ import {useDispatch, useSelector} from "react-redux";
 import { RootState,AppDispatch } from '../../Store';
 import { IUser } from '../../Interface/IUser';
 
+import "./UserInfor.css";
+
 export const Info: React.FC = () => {
     
     const dispatch:AppDispatch = useDispatch();

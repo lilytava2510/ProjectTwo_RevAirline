@@ -38,6 +38,7 @@ public class UserController {
 
         try{
             User we = us.createUser(u.get("email"), u.get("password"), points, role, u.get("firstName"), u.get("lastName"), ccn, sick, ppn);
+
             if(we != null){
                 es.sendEmail(we.getEmail(),
                         "Welcome to RevAir!",
@@ -46,6 +47,7 @@ public class UserController {
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
             }
+
 
 
         }catch(Exception e){
@@ -84,6 +86,7 @@ public class UserController {
         } catch (Exception e) {
 
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+
         }
     }
     @PutMapping("/user/update")
@@ -95,10 +98,14 @@ public class UserController {
         int ppn = Integer.parseInt(u.get("ppn"));
         int userId = Integer.parseInt(u.get("userId"));
 
+        try {
+            User we = us.updateUser(userId, ccn, u.get("email"), u.get("firstName"), u.get("lastName"), u.get("password"), points, ppn, role, sick);
 
-        User we = us.updateUser(userId, ccn, u.get("email"), u.get("firstName"), u.get("lastName"), u.get("password"), points, ppn, role, sick);
+            return new ResponseEntity<>(we, HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
 
-        return new ResponseEntity<>(we, HttpStatus.ACCEPTED);
+        }
     }
 
 //    @GetMapping("/user/get/{email}")
@@ -111,11 +118,13 @@ public class UserController {
         return new ResponseEntity<>(us.findCurrentUserById(id), HttpStatus.ACCEPTED);
     }
 
+
 //    @GetMapping("/user/get")
 //    public ResponseEntity<List> handleGetAllUsers() {
 //        return new ResponseEntity<>(us.getAllUsers(), HttpStatus.ACCEPTED);
 //
 //    }
+
 }
 
 

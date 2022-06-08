@@ -30,8 +30,13 @@ type info = {
     firstName: any,
     lastName: any,
     ccn: any,
+<<<<<<< HEAD
     sick: any,
     ppn: any,
+=======
+    sick: boolean,
+    ppn: any
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
 
    
 }

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
 //import { setDefaultResultOrder } from 'dns';
 import React, {useState, useEffect} from 'react';
 //import "./LoginForm.css";

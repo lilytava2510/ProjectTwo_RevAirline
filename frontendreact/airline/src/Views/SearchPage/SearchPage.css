@@ -10,11 +10,16 @@ th, td{
     width: 60px;
 }
 td{
+<<<<<<< HEAD
     background-color: var(--bs-blue);
+=======
+    background-color:#384D66;
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
 }
 h1, h2{
     color: #C1CFE0;
     text-align: center;
+<<<<<<< HEAD
 }
 .add{
     display: flex;
@@ -72,3 +77,6 @@ th, td {
       
 
   }
+=======
+}
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6

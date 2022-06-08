@@ -9,7 +9,10 @@ import { IUser } from '../../Interface/IUser';
 import { IBooking } from '../../Interface/IBooking';
 import { ICity } from '../../Interface/ICity';
 import { clearCities, createCity } from '../../Slices/CitySlice';
+<<<<<<< HEAD
 import { Link } from 'react-router-dom';
+=======
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
 
 export const CityCreate: React.FC = () => {
 
@@ -18,7 +21,10 @@ export const CityCreate: React.FC = () => {
      const user = useSelector((state:RootState) => state.user);
      const book = useSelector((state:RootState) => state.book);
      const cities = useSelector((state:RootState) => state.city);
+<<<<<<< HEAD
      const userState = useSelector ((state:RootState) => state.user);
+=======
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
 
 
      const dispatch:AppDispatch = useDispatch();
@@ -88,10 +94,13 @@ export const CityCreate: React.FC = () => {
                 </div>
             </form>
                 <button className="login-button" onClick={handleUpdate}>Create City</button>
+<<<<<<< HEAD
                 {!userState.user?
           <li className="nav-item">
                     <Link to={"/create"} className="nav-link">Create an account</Link>
                 </li> : <></> }
+=======
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
         </div>
     )
 }

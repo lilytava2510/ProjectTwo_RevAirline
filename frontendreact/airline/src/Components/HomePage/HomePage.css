@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .input-h4 {
     display: inline;
 }
@@ -36,3 +37,8 @@ th, td {
     padding: 20px;
     margin: auto;
     }
+=======
+.input-h4{
+    text-align: left;
+}
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6

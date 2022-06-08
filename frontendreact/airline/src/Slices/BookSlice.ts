@@ -118,7 +118,10 @@ export const BookSlice = createSlice({
         },
         clearBooking : (state) =>{
             state.current_booking = undefined;
+<<<<<<< HEAD
             state.booking = undefined;
+=======
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
         }
         
     
@@ -128,8 +131,12 @@ export const BookSlice = createSlice({
             state.loading = true;
         });
         builder.addCase(createBook.fulfilled, (state, action) => {
+<<<<<<< HEAD
             state.current_booking = undefined;
             state.booking = undefined;
+=======
+            state.current_booking = action.payload;
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
             state.error = false;
             state.loading = false;
         });
@@ -142,7 +149,11 @@ export const BookSlice = createSlice({
         });
         builder.addCase(searchBooking.fulfilled, (state, action) => {
             state.loading =false;
+<<<<<<< HEAD
             state.error = false;
+=======
+            console.log(action.payload)
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
             state.current_booking= action.payload;
         });
         builder.addCase(searchBooking.rejected, (state, action)=> {
@@ -157,16 +168,23 @@ export const BookSlice = createSlice({
             state.error = false;
             state.loading = false;
         })
+<<<<<<< HEAD
         builder.addCase(getBooks.rejected, (state, action)=> {
             state.error = true;
             state.loading = false;
         });
+=======
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
         builder.addCase(pointsBook.pending, (state, action)=> {
             state.loading = true;
         });
         builder.addCase(pointsBook.fulfilled, (state, action) => {
+<<<<<<< HEAD
             state.current_booking = undefined;
             state.booking = undefined;
+=======
+            state.current_booking = action.payload;
+>>>>>>> a514cc80d03cb6380c08cbf0a9621a096ab270f6
             state.error = false;
             state.loading = false;
         });
