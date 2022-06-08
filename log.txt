@@ -20,3 +20,9 @@
 2022-06-06 08:28:24 WARN  LoggingUtil:80 - improper attempt at login on email: @
 2022-06-06 09:18:52 WARN  LoggingUtil:80 - improper attempt at login on email: @
 2022-06-06 09:39:01 WARN  LoggingUtil:80 - improper attempt at login on email: @
+2022-06-06 09:51:51 WARN  LoggingUtil:80 - improper attempt at login on email: @
+2022-06-06 10:11:38 WARN  LoggingUtil:80 - improper attempt at login on email: d
+2022-06-06 10:13:45 WARN  LoggingUtil:80 - improper attempt at login on email: f@gmail.com
+2022-06-06 10:13:55 WARN  LoggingUtil:80 - improper attempt at login on email: f@gmailcom
+2022-06-06 10:55:59 WARN  LoggingUtil:80 - improper attempt at login on email: kay@gmail.com
+2022-06-06 12:02:25 WARN  LoggingUtil:80 - improper attempt at login on email: @
