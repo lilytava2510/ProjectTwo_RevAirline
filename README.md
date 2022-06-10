@@ -31,4 +31,9 @@ A service that provides searches through a catalog of flights, allows for bookin
 * Add new city routes
 
 # Contributors
+* Philip Kiecun
+* Hassan Zareef
+* Jaya Bidwai
+* Lilianne Tavarez
+* Dawit Alemu
 
